@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{317fe6aa-1de2-4d2b-89cc-583557f238ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Header Files">
+      <UniqueIdentifier>{163de372-7990-4796-bdf3-f3581669403c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Source Files">
+      <UniqueIdentifier>{b686f4d5-6b3d-437e-874e-eb326b8aafd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Header Files\Event">
+      <UniqueIdentifier>{cdec7237-2eb3-4f94-93a7-75b1023bcc20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Header Files\Sprite">
+      <UniqueIdentifier>{045788c4-a166-49b7-989c-4f56587d1782}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Header Files\System">
+      <UniqueIdentifier>{2068b79c-89af-4df5-b06b-6602e3b2c551}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Header Files\Utility">
+      <UniqueIdentifier>{95a561ca-b7a0-4a69-b9d1-3fef415f4f2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Source Files\Event">
+      <UniqueIdentifier>{1e92c192-08f7-4e53-90e2-bf0f51091bb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Source Files\Utility">
+      <UniqueIdentifier>{d09647dd-174e-4ef1-827f-07cfa87b66a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Source Files\System">
+      <UniqueIdentifier>{4b70a4cb-0d47-42bd-a9c5-95f3d23f214c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Source Files\Sprite">
+      <UniqueIdentifier>{8d0bf113-e3ed-483d-91ef-1fb30c11f4e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core">
+      <UniqueIdentifier>{12ff5786-8fc9-4ea4-8052-e5577f5bc0c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core">
+      <UniqueIdentifier>{6f948487-a4c6-4d38-8970-05ee572d30d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Util">
+      <UniqueIdentifier>{0c0ca147-d6f1-4d3a-90ea-610e3786d7b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Util">
+      <UniqueIdentifier>{7402acdd-cb28-4257-8d19-fb80c44d5147}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Util\File">
+      <UniqueIdentifier>{db10136c-c958-44ab-8bd4-fa32cc7cceaf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Util\File">
+      <UniqueIdentifier>{bf7288c0-fdf9-4edd-a001-c5a5fc3512a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Util\UI">
+      <UniqueIdentifier>{89d3e378-aeca-4416-bae0-849606cf3649}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Util\UI">
+      <UniqueIdentifier>{9e4a6ac2-ccd6-4be4-9e82-81340e50d60b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scenes">
+      <UniqueIdentifier>{41aea9e4-0fc7-4c2b-89da-f5e8fd53d587}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Scenes">
+      <UniqueIdentifier>{2c5ef935-7558-4f41-9a48-3c50205d47d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Grid">
+      <UniqueIdentifier>{a4e936b7-e63e-4f3a-bba3-d98904d14d7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Grid">
+      <UniqueIdentifier>{ca1cd2c1-77ef-4a70-b513-ef831a433eff}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Scene.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleScene.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>Common\Header Files\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="EventListener.h">
+      <Filter>Common\Header Files\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="EventSystem.h">
+      <Filter>Common\Header Files\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Common\Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Font.h">
+      <Filter>Common\Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsBuffer.h">
+      <Filter>Common\Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound.h">
+      <Filter>Common\Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsSystem.h">
+      <Filter>Common\Header Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="InputSystem.h">
+      <Filter>Common\Header Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="System.h">
+      <Filter>Common\Header Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Common\Header Files\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Common\Header Files\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteSheet.h">
+      <Filter>Common\Header Files\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetContainer.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetManager.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="InputTranslator.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEvent.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="LocalizationMap.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveManager.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="SettingsFile.h">
+      <Filter>Header Files\Util\File</Filter>
+    </ClInclude>
+    <ClInclude Include="LocalizationFile.h">
+      <Filter>Header Files\Util\File</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveFile.h">
+      <Filter>Header Files\Util\File</Filter>
+    </ClInclude>
+    <ClInclude Include="RectBounds.h">
+      <Filter>Header Files\Util\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UITextButton.h">
+      <Filter>Header Files\Util\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionsScene.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Grid.h">
+      <Filter>Header Files\Grid</Filter>
+    </ClInclude>
+    <ClInclude Include="GridVisualizer.h">
+      <Filter>Header Files\Grid</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="TitleScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="EventListener.cpp">
+      <Filter>Common\Source Files\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="EventSystem.cpp">
+      <Filter>Common\Source Files\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Common\Source Files\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Common\Source Files\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteSheet.cpp">
+      <Filter>Common\Source Files\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicsSystem.cpp">
+      <Filter>Common\Source Files\System</Filter>
+    </ClCompile>
+    <ClCompile Include="InputSystem.cpp">
+      <Filter>Common\Source Files\System</Filter>
+    </ClCompile>
+    <ClCompile Include="System.cpp">
+      <Filter>Common\Source Files\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Color.cpp">
+      <Filter>Common\Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Font.cpp">
+      <Filter>Common\Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicsBuffer.cpp">
+      <Filter>Common\Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound.cpp">
+      <Filter>Common\Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetManager.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="InputTranslator.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="LocalizationMap.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveManager.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="SettingsFile.cpp">
+      <Filter>Source Files\Util\File</Filter>
+    </ClCompile>
+    <ClCompile Include="SaveFile.cpp">
+      <Filter>Source Files\Util\File</Filter>
+    </ClCompile>
+    <ClCompile Include="LocalizationFile.cpp">
+      <Filter>Source Files\Util\File</Filter>
+    </ClCompile>
+    <ClCompile Include="RectBounds.cpp">
+      <Filter>Source Files\Util\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UITextButton.cpp">
+      <Filter>Source Files\Util\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Grid.cpp">
+      <Filter>Source Files\Grid</Filter>
+    </ClCompile>
+    <ClCompile Include="GridVisualizer.cpp">
+      <Filter>Source Files\Grid</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

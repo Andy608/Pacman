@@ -1,0 +1,8 @@
+* Tile Data
+square_size=42
+wall_tile=0,0,0
+floor_tile=255,255,255
+wall_tile_image=assets/tiles/wall_tile.png
+floor_tile_image=assets/tiles/floor_tile.png
+0=floor_tile
+1=wall_tile
