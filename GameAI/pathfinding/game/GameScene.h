@@ -3,6 +3,7 @@
 
 #include "Scene.h"
 #include "Grid.h"
+#include "GridGraph.h"
 #include "GridVisualizer.h"
 
 class GameScene : public Scene
@@ -26,6 +27,7 @@ private:
 
 	SettingsFile* mpMapSettings;
 
+	GridGraph* mpGridGraph;
 	Grid* mpGameGrid;
 	GridVisualizer* mpGridVisualizer;
 };

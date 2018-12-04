@@ -6,12 +6,13 @@
 #include "Trackable.h"
 #include "GraphicsSystem.h"
 #include "Color.h"
+#include "SettingsFile.h"
 
 class Grid;
 class GraphicsBuffer;
 class Sprite;
 
-class GridVisualizer :public Trackable
+class GridVisualizer : public Trackable
 {
 public:
 	GridVisualizer(Grid* pGrid);
@@ -22,7 +23,7 @@ public:
 	void removeEntry(int index, const Color& color);
 	void removeAllEntries();
 	void setModified() { mDirty = true; };
-	void draw(/*GraphicsBuffer& dest*/);
+	void draw();
 private:
 	void refresh();
 

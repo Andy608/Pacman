@@ -51,6 +51,9 @@ public:
 	static void draw(const GraphicsBuffer& targetBuffer, const float& drawingX, const float& drawingY, const Sprite& sprite, const float& scale = 1.0f);
 	static void drawCentered(const Sprite& sprite, const float& scale = 1.0f);
 
+	void draw(const Sprite& aSprite, float dx, float dy, float rotationInRadians /*= 0*/, int flags /*= 0*/);
+	void draw(GraphicsBuffer& dest, const Sprite& aSprite, float dx, float dy, float rotationInRadians /*= 0*/, int flags /*= 0*/);
+
 
 	static void writeTextCenteredVertically(const float& startingY, const Font& font, const Color& color, const std::string& text);
 	static void writeTextCenteredHorizontally(const float& startingX, const Font& font, const Color& color, const std::string& text);

@@ -9,7 +9,6 @@ subtitle_font_size=28
 gui_font_size=36
 help_font_size=12
 
-
 title_color_r=255
 title_color_g=255
 title_color_b=0
@@ -60,6 +59,13 @@ difficulty_amplitude_scale=1.4
 difficulty_frequency_scale=1.1
 
 level_map_buffer=assets/data_files/level_data/level.png
+player_buffer=assets/unit/player.png
+candy_buffer=assets/item/candy.png
+coin_buffer=assets/item/coin.png
+enemy_attack_buffer=assets/unit/enemy_attack.png
+enemy_flee_buffer=assets/unit/enemy_flee.png
+enemy_idle_buffer=assets/unit/enemy_idle.png
+
 background_buffer=assets/backgrounds/background.png
 air_balloon_buffer=assets/air_balloon/air_balloon.png
 wall_buffer=assets/wall/wall.png

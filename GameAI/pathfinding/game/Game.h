@@ -22,6 +22,13 @@ class SceneManager;
 class AssetManager;
 class SaveManager;
 class LocalizationMap;
+class PerformanceTracker;
+
+class ComponentManager;
+class UnitManager;
+class GridPathfinder;
+
+extern PerformanceTracker* gpPerformanceTracker;
 
 class Game : public EventListener
 {
@@ -46,6 +53,10 @@ public:
 	inline SaveManager* getSaveManager() const { return mpSaveManager; };
 	inline Vector2D getDisplayDimensions() const { return mDisplayDimensions; };
 	inline SceneManager* getSceneManager() const { return mpSceneManager; }
+	
+	inline UnitManager* getUnitManager() const { return mpUnitManager; };
+	inline ComponentManager* getComponentManager() const { return mpComponentManager; };
+
 	inline bool isSoundOn() { return mIsSoundOn; };
 
 	inline int getScore() const { return mScore; };
@@ -61,6 +72,8 @@ private:
 	static const float mFPS;
 	static const float mUPDATE_TIME;//Timer is in milliseconds
 	static const float mLAG_CAP;//Timer is in milliseconds
+
+	static const int MAX_UNITS = 1000;
 
 	const std::string mDRAW_TRACKER_NAME = "draw";
 	int mFrames;
@@ -78,6 +91,9 @@ private:
 	SceneManager* mpSceneManager = nullptr;
 	InputTranslator* mpInputTranslator = nullptr;
 	SaveManager* mpSaveManager = nullptr;
+
+	ComponentManager* mpComponentManager = nullptr;
+	UnitManager* mpUnitManager = nullptr;
 
 	Vector2D mDisplayDimensions;
 	int mScore;

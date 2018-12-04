@@ -31,19 +31,22 @@ private:
 class KeyboardEvent : public Event
 {
 public:
-	inline KeyboardEvent(int inputCode, bool isKeyDown) :
+	inline KeyboardEvent(int inputCode, bool isKeyDown, bool isNewKeyPress) :
 		mInputCode(inputCode),
 		mIsKeyDown(isKeyDown),
+		mIsNewKeyPress(isNewKeyPress),
 		Event(EnumEventType::_INPUT_EVENT) {}
 
 	inline virtual ~KeyboardEvent() {}
 
 	inline const int& getInputCode() const { return mInputCode; };
 	inline const bool& isKeyDown() const { return mIsKeyDown; };
+	inline const bool& isNewKeyPress() const { return mIsNewKeyPress; };
 
 private:
 	int mInputCode;
 	bool mIsKeyDown;
+	bool mIsNewKeyPress;
 };
 
 class MouseEvent : public Event

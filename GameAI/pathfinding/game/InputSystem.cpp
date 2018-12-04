@@ -32,10 +32,17 @@ void InputSystem::update(float deltaTime)
 		switch (mpEventQueue.type)
 		{
 		case SDL_KEYDOWN:
-			EventSystem::getInstance()->fireEvent(KeyboardEvent(mpEventQueue.key.keysym.sym, true));
+			EventSystem::getInstance()->fireEvent(KeyboardEvent(mpEventQueue.key.keysym.sym, true, mIsNewKeyPress));
+			
+			if (mIsNewKeyPress)
+			{
+				mIsNewKeyPress = false;
+			}
+
 			break;
 		case SDL_KEYUP:
-			EventSystem::getInstance()->fireEvent(KeyboardEvent(mpEventQueue.key.keysym.sym, false));
+			EventSystem::getInstance()->fireEvent(KeyboardEvent(mpEventQueue.key.keysym.sym, false, mIsNewKeyPress));
+			mIsNewKeyPress = true;
 			break;
 		case SDL_MOUSEBUTTONDOWN:
 			mIsMouseDown = true;

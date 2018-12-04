@@ -78,7 +78,9 @@ void EventSystem::fireEvent(const Event& theEvent)
 
 void EventSystem::dispatchAllEvents(const Event& theEvent)
 {
-	std::pair<std::multimap<Event::EnumEventType, EventListener*>::iterator, std::multimap<Event::EnumEventType, EventListener*>::iterator> ret;
+	std::pair<std::multimap<Event::EnumEventType, EventListener*>::iterator, 
+		std::multimap<Event::EnumEventType, EventListener*>::iterator> ret;
+
 	ret = smpInstance->mListenerMap.equal_range(theEvent.getType());
 
 	std::multimap<Event::EnumEventType, EventListener*>::iterator iter;

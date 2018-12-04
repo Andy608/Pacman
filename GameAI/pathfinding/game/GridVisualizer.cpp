@@ -7,7 +7,8 @@
 
 GridVisualizer::GridVisualizer(Grid* pGrid) : 
 	mpGrid(pGrid),
-	mDirty(true) {}
+	mDirty(true) 
+{}
 
 GridVisualizer::~GridVisualizer() {}
 
@@ -25,7 +26,7 @@ void GridVisualizer::refresh()
 		//get any non-zero squares and send them to the visualizer
 		for (int i = 0; i < size; i++)
 		{
-			if (mpGrid->getValueAtIndex(i) != 0)
+			if (mpGrid->getValueAtIndex(i) == mpGrid->sWALL_ID)
 			{
 				addColor(i, color);
 			}
@@ -73,7 +74,7 @@ void GridVisualizer::removeAllEntries()
 	mColormap.clear();
 }
 
-void GridVisualizer::draw(/*GraphicsBuffer& dest*/)
+void GridVisualizer::draw()
 {
 	if (mDirty)
 	{
@@ -93,8 +94,7 @@ void GridVisualizer::draw(/*GraphicsBuffer& dest*/)
 		for (unsigned int i = 0; i<theIndices.size(); i++)
 		{
 			Vector2D ulPos = mpGrid->getULCornerOfSquare(theIndices[i]);
-			//GraphicsSystem::getInstance()->fillRegion(dest, ulPos, Vector2D(ulPos.getX() + squareSize, ulPos.getY() + squareSize), iter->first);
-			GraphicsSystem::getInstance()->drawRect(ulPos.getX(), ulPos.getY(), squareSize, squareSize, iter->first);
+			GraphicsSystem::getInstance()->drawRect(ulPos.getX(), ulPos.getY(), (float)squareSize, (float)squareSize, iter->first);
 		}
 	}
 }

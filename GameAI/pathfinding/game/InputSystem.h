@@ -20,14 +20,18 @@ enum EnumKeyInput
 	ESCAPE_KEY = SDLK_ESCAPE,
 	ENTER_KEY = SDLK_RETURN,
 	SPACE_KEY = SDLK_SPACE,
-	S_KEY = SDLK_s,
 	F_KEY = SDLK_f,
 	L_KEY = SDLK_l,
 
 	UP_KEY = SDLK_UP,
 	DOWN_KEY = SDLK_DOWN,
 	LEFT_KEY = SDLK_LEFT,
-	RIGHT_KEY = SDLK_RIGHT
+	RIGHT_KEY = SDLK_RIGHT,
+
+	A_KEY = SDLK_a,
+	S_KEY = SDLK_s,
+	D_KEY = SDLK_d,
+	W_KEY = SDLK_w
 };
 
 class InputSystem : public Trackable
@@ -49,6 +53,7 @@ private:
 	bool mIsInitialized;
 	bool mIsMouseDown = false;
 	bool mIsNewMousePress = false;
+	bool mIsNewKeyPress = true;
 	SDL_Event mpEventQueue;
 };
 

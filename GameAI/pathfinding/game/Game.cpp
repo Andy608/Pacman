@@ -19,9 +19,11 @@
 #include "AssetManager.h"
 #include "LocalizationMap.h"
 #include "SaveManager.h"
+#include "UnitManager.h"
+#include "ComponentManager.h"
 //#include "Score.h"
-
 //Temp
+
 //#include "Player.h"
 
 Game* Game::smpInstance = nullptr;
@@ -83,6 +85,9 @@ bool Game::init(const int& displayWidth, const int& displayHeight)
 			mpLocalizationMap = new LocalizationMap();
 
 			mpSceneManager = new SceneManager();
+
+			mpComponentManager = new ComponentManager(MAX_UNITS);
+			mpUnitManager = new UnitManager(MAX_UNITS);
 
 			mpSaveManager = new SaveManager();
 			mpSaveManager->addSaveFile("game_save_data", "assets/data_files/game_save_data.txt");
@@ -167,6 +172,18 @@ void Game::cleanup()
 			mpTimer = nullptr;
 		}
 
+		if (mpComponentManager)
+		{
+			delete mpComponentManager;
+			mpComponentManager = nullptr;
+		}
+
+		if (mpUnitManager)
+		{
+			delete mpUnitManager;
+			mpUnitManager = nullptr;
+		}
+
 		System::cleanupInstance();
 
 		mIsInitialized = false;
@@ -201,7 +218,7 @@ void Game::loop()
 			mpTimer->start();
 
 			//Update and render
-			update(mUPDATE_TIME);
+			update(mUPDATE_TIME / 1000.0f);
 			render();
 
 			mpTimer->sleepUntilElapsed(mUPDATE_TIME);
@@ -221,6 +238,10 @@ void Game::loop()
 void Game::update(float deltaTime)
 {
 	System::getInstance()->getInputSystem()->update(deltaTime);
+
+	mpUnitManager->updateAll(deltaTime);
+	mpComponentManager->update(deltaTime);
+
 	mpSceneManager->update(deltaTime);
 }
 
@@ -229,6 +250,7 @@ void Game::render()
 	try
 	{
 		mpSceneManager->draw();
+		mpUnitManager->drawAll();
 	}
 	catch (const std::exception& e)
 	{

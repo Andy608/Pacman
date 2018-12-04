@@ -139,8 +139,13 @@ bool AssetManager::loadAssets()
 void AssetManager::loadBuffers()
 {
 	mBufferContainer.addAsset("level_map", new GraphicsBuffer(mMainSettingsFile.getSettingFromKey("level_map_buffer")));
-
-
+	mBufferContainer.addAsset("player_buffer", new GraphicsBuffer(mMainSettingsFile.getSettingFromKey("player_buffer")));
+	mBufferContainer.addAsset("candy_buffer", new GraphicsBuffer(mMainSettingsFile.getSettingFromKey("candy_buffer")));
+	mBufferContainer.addAsset("coin_buffer", new GraphicsBuffer(mMainSettingsFile.getSettingFromKey("coin_buffer")));
+	
+	mBufferContainer.addAsset("enemy_attack_buffer", new GraphicsBuffer(mMainSettingsFile.getSettingFromKey("enemy_attack_buffer")));
+	mBufferContainer.addAsset("enemy_flee_buffer", new GraphicsBuffer(mMainSettingsFile.getSettingFromKey("enemy_flee_buffer")));
+	mBufferContainer.addAsset("enemy_idle_buffer", new GraphicsBuffer(mMainSettingsFile.getSettingFromKey("enemy_idle_buffer")));
 
 	mBufferContainer.addAsset("background_buffer", new GraphicsBuffer(mMainSettingsFile.getSettingFromKey("background_buffer")));
 	mBufferContainer.addAsset("air_balloon", new GraphicsBuffer(mMainSettingsFile.getSettingFromKey("air_balloon_buffer")));
@@ -150,7 +155,14 @@ void AssetManager::loadBuffers()
 
 void AssetManager::loadSprites()
 {
-	mSpriteContainer.addAsset("player_sprite", new Sprite(*mBufferContainer.getAsset("air_balloon")));
+	mSpriteContainer.addAsset("player_sprite", new Sprite(*mBufferContainer.getAsset("player_buffer")));
+	mSpriteContainer.addAsset("candy_sprite", new Sprite(*mBufferContainer.getAsset("candy_buffer")));
+	mSpriteContainer.addAsset("coin_sprite", new Sprite(*mBufferContainer.getAsset("coin_buffer")));
+	
+	mSpriteContainer.addAsset("enemy_attack_sprite", new Sprite(*mBufferContainer.getAsset("enemy_attack_buffer")));
+	mSpriteContainer.addAsset("enemy_flee_sprite", new Sprite(*mBufferContainer.getAsset("enemy_flee_buffer")));
+	mSpriteContainer.addAsset("enemy_idle_sprite", new Sprite(*mBufferContainer.getAsset("enemy_idle_buffer")));
+
 	mSpriteContainer.addAsset("wall_sprite", new Sprite(*mBufferContainer.getAsset("wall")));
 }
 

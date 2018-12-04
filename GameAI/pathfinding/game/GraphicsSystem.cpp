@@ -283,7 +283,6 @@ void GraphicsSystem::draw(const GraphicsBuffer& targetBuffer, const float& drawi
 	const int& SPRITE_WIDTH = sprite.getWidth();
 	const int& SPRITE_HEIGHT = sprite.getHeight();
 	SDL_Texture* pPreviousBitmap = SDL_GetRenderTarget(smpInstance->mpRenderer);
-
 	SDL_SetRenderTarget(smpInstance->mpRenderer, targetBuffer.mpBitmapTexture);
 
 	SDL_Rect srcRect;
@@ -310,6 +309,34 @@ void GraphicsSystem::drawCentered(const Sprite& sprite, const float& scale)
 	float centerY = std::round((getDisplayHeight() - sprite.getHeight() * scale) / 2.0f);
 
 	draw(centerX, centerY, sprite, scale);
+}
+
+void GraphicsSystem::draw(const Sprite& aSprite, float dx, float dy, float rotationInRadians /*= 0*/, int flags /*= 0*/)
+{
+	draw(*smpInstance->mpBackbuffer, aSprite, dx, dy, rotationInRadians, flags);
+}
+
+void GraphicsSystem::draw(GraphicsBuffer& dest, const Sprite& aSprite, float dx, float dy, float rotationInRadians /*= 0*/, int flags /*= 0*/)
+{
+	SDL_Texture* pPreviousBitmap = SDL_GetRenderTarget(smpInstance->mpRenderer);
+	SDL_SetRenderTarget(smpInstance->mpRenderer, dest.mpBitmapTexture);
+
+	SDL_Renderer* pRenderer = smpInstance->mpRenderer;
+
+	SDL_Rect srcRect;
+	srcRect.w = (int)aSprite.getWidth();
+	srcRect.h = (int)aSprite.getHeight();
+	srcRect.x = (int)aSprite.getStartingX();
+	srcRect.y = (int)aSprite.getStartingY();
+	SDL_Rect destRect;
+	destRect.w = (int)srcRect.w;
+	destRect.h = (int)srcRect.h;
+	destRect.x = (int)dx;
+	destRect.y = (int)dy;
+	double rotationInDegrees = rotationInRadians * (180.0 / M_PI);
+	SDL_RenderCopyEx(pRenderer, aSprite.mSPRITE_BUFFER.mpBitmapTexture, &srcRect, &destRect, rotationInDegrees, NULL, SDL_FLIP_NONE);
+
+	SDL_SetRenderTarget(smpInstance->mpRenderer, pPreviousBitmap);;
 }
 
 void GraphicsSystem::writeText(const float& startingX, const float& startingY, const Font& font, const Color& color, const std::string& text)
