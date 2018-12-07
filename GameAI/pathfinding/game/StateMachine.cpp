@@ -24,7 +24,7 @@ void StateMachine::start()
 	}
 }
 
-void StateMachine::update()
+void StateMachine::update(float deltaTime)
 {
 	if (mpCurrentState == NULL)
 	{
@@ -32,7 +32,7 @@ void StateMachine::update()
 		assert(mpCurrentState != NULL);
 	}
 
-	StateTransition* pTransition = mpCurrentState->update();
+	StateTransition* pTransition = mpCurrentState->update(deltaTime);
 	if (pTransition != NULL)
 	{
 		transitionToState(pTransition->getTargetStateID());

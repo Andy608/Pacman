@@ -5,7 +5,7 @@ title_scene_menu_load=Chargement du Jeu
 title_scene_menu_options=Paramètres
 title_scene_menu_exit=Laisser
 
-game_scene_score=Vos Points
+game_scene_score=Vos Points: 
 
 options_scene_menu_title=PARAMÈTRES
 options_scene_menu_back=<- Arrière
@@ -19,5 +19,7 @@ options_scene_menu_sound_on=Sur
 options_scene_menu_sound_off=De
 
 end_scene_menu_title=MONTGOLFIÈRE
+end_scene_menu_outcome_win=Tu as gagné!
+end_scene_menu_outcome_lose=Tu as perdu
 end_scene_menu_subtitle=Les points:
 end_scene_menu_back=Menu principal

@@ -36,6 +36,6 @@ void Coin::checkIfPlayerInRadius(const PlayerMovedEvent& theEvent)
 	if (distance.getLengthSquared() < grid->getSquareSize() * grid->getSquareSize())
 	{
 		mShouldDelete = true;
-		//Send event that adds score to player.
+		EventSystem::fireEvent(PlayerAteCoin());
 	}
 }

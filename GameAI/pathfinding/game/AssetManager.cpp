@@ -148,9 +148,6 @@ void AssetManager::loadBuffers()
 	mBufferContainer.addAsset("enemy_idle_buffer", new GraphicsBuffer(mMainSettingsFile.getSettingFromKey("enemy_idle_buffer")));
 
 	mBufferContainer.addAsset("background_buffer", new GraphicsBuffer(mMainSettingsFile.getSettingFromKey("background_buffer")));
-	mBufferContainer.addAsset("air_balloon", new GraphicsBuffer(mMainSettingsFile.getSettingFromKey("air_balloon_buffer")));
-	mBufferContainer.addAsset("wall", new GraphicsBuffer(mMainSettingsFile.getSettingFromKey("wall_buffer")));
-	mBufferContainer.addAsset("balloon_wall", new GraphicsBuffer(mMainSettingsFile.getSettingFromKey("balloon_wall_buffer")));
 }
 
 void AssetManager::loadSprites()
@@ -162,17 +159,19 @@ void AssetManager::loadSprites()
 	mSpriteContainer.addAsset("enemy_attack_sprite", new Sprite(*mBufferContainer.getAsset("enemy_attack_buffer")));
 	mSpriteContainer.addAsset("enemy_flee_sprite", new Sprite(*mBufferContainer.getAsset("enemy_flee_buffer")));
 	mSpriteContainer.addAsset("enemy_idle_sprite", new Sprite(*mBufferContainer.getAsset("enemy_idle_buffer")));
-
-	mSpriteContainer.addAsset("wall_sprite", new Sprite(*mBufferContainer.getAsset("wall")));
 }
 
-void AssetManager::loadSpriteSheets()
-{
-	mSpriteSheetContainer.addAsset("balloon_wall_spritesheet", new SpriteSheet(*mBufferContainer.getAsset("balloon_wall"), (int)*getValue("balloon_wall_sheet_row_amount"), (int)*getValue("balloon_wall_sheet_column_amount")));
-}
+void AssetManager::loadSpriteSheets() {}
 
 void AssetManager::loadValues()
 {
+	mValueContainer.addAsset("eat_enemy_score", new float(std::stof(mMainSettingsFile.getSettingFromKey("eat_enemy_score"))));
+	mValueContainer.addAsset("eat_candy_score", new float(std::stof(mMainSettingsFile.getSettingFromKey("eat_candy_score"))));
+	mValueContainer.addAsset("eat_coin_score", new float(std::stof(mMainSettingsFile.getSettingFromKey("eat_coin_score"))));
+
+	mValueContainer.addAsset("enemy_respawn_time", new float(std::stof(mMainSettingsFile.getSettingFromKey("enemy_respawn_time"))));
+	mValueContainer.addAsset("enemy_flee_time", new float(std::stof(mMainSettingsFile.getSettingFromKey("enemy_flee_time"))));
+
 	mValueContainer.addAsset("title_color_r", new float(std::stof(mMainSettingsFile.getSettingFromKey("title_color_r"))));
 	mValueContainer.addAsset("title_color_g", new float(std::stof(mMainSettingsFile.getSettingFromKey("title_color_g"))));
 	mValueContainer.addAsset("title_color_b", new float(std::stof(mMainSettingsFile.getSettingFromKey("title_color_b"))));
@@ -189,16 +188,9 @@ void AssetManager::loadValues()
 	mValueContainer.addAsset("subtitle_font_size", new float(std::stof(mMainSettingsFile.getSettingFromKey("subtitle_font_size"))));
 	mValueContainer.addAsset("gui_font_size", new float(std::stof(mMainSettingsFile.getSettingFromKey("gui_font_size"))));
 
-	mValueContainer.addAsset("score_location_x", new float(std::stof(mMainSettingsFile.getSettingFromKey("score_location_x"))));
-	mValueContainer.addAsset("score_location_y", new float(std::stof(mMainSettingsFile.getSettingFromKey("score_location_y"))));
-
-	mValueContainer.addAsset("score_update_timing", new float(std::stof(mMainSettingsFile.getSettingFromKey("score_update_timing"))));
-	mValueContainer.addAsset("score_difficulty_change", new float(std::stof(mMainSettingsFile.getSettingFromKey("score_difficulty_change"))));
-
 	mValueContainer.addAsset("title_scene_menu_title_y", new float(std::stof(mMainSettingsFile.getSettingFromKey("title_scene_menu_title_y"))));
 	mValueContainer.addAsset("title_scene_menu_subtitle_y", new float(std::stof(mMainSettingsFile.getSettingFromKey("title_scene_menu_subtitle_y"))));
 	mValueContainer.addAsset("title_scene_menu_start_y", new float(std::stof(mMainSettingsFile.getSettingFromKey("title_scene_menu_start_y"))));
-	mValueContainer.addAsset("title_scene_menu_load_y", new float(std::stof(mMainSettingsFile.getSettingFromKey("title_scene_menu_load_y"))));
 	mValueContainer.addAsset("title_scene_menu_options_y", new float(std::stof(mMainSettingsFile.getSettingFromKey("title_scene_menu_options_y"))));
 	mValueContainer.addAsset("title_scene_menu_exit_y", new float(std::stof(mMainSettingsFile.getSettingFromKey("title_scene_menu_exit_y"))));
 
@@ -213,23 +205,11 @@ void AssetManager::loadValues()
 	mValueContainer.addAsset("options_scene_menu_french_y", new float(std::stof(mMainSettingsFile.getSettingFromKey("options_scene_menu_french_y"))));
 	mValueContainer.addAsset("options_scene_menu_spanish_y", new float(std::stof(mMainSettingsFile.getSettingFromKey("options_scene_menu_spanish_y"))));
 
+	mValueContainer.addAsset("end_scene_outcome_y", new float(std::stof(mMainSettingsFile.getSettingFromKey("end_scene_outcome_y"))));
+
 	mValueContainer.addAsset("end_scene_menu_title_y", new float(std::stof(mMainSettingsFile.getSettingFromKey("end_scene_menu_title_y"))));
 	mValueContainer.addAsset("end_scene_menu_subtitle_y", new float(std::stof(mMainSettingsFile.getSettingFromKey("end_scene_menu_subtitle_y"))));
 	mValueContainer.addAsset("end_scene_menu_back_y", new float(std::stof(mMainSettingsFile.getSettingFromKey("end_scene_menu_back_y"))));
-
-	mValueContainer.addAsset("starting_acceleration_x", new float(std::stof(mMainSettingsFile.getSettingFromKey("starting_acceleration_x"))));
-	mValueContainer.addAsset("starting_velocity_x", new float(std::stof(mMainSettingsFile.getSettingFromKey("starting_velocity_x"))));
-
-	mValueContainer.addAsset("starting_balloon_wall_velocity", new float(std::stof(mMainSettingsFile.getSettingFromKey("starting_balloon_wall_velocity"))));
-
-	mValueContainer.addAsset("difficulty_block_initial_velocity", new float(std::stof(mMainSettingsFile.getSettingFromKey("difficulty_block_initial_velocity"))));
-	mValueContainer.addAsset("difficulty_block_increment_velocity", new float(std::stof(mMainSettingsFile.getSettingFromKey("difficulty_block_increment_velocity"))));
-
-	mValueContainer.addAsset("balloon_wall_sheet_row_amount", new float(std::stof(mMainSettingsFile.getSettingFromKey("balloon_wall_sheet_row_amount"))));
-	mValueContainer.addAsset("balloon_wall_sheet_column_amount", new float(std::stof(mMainSettingsFile.getSettingFromKey("balloon_wall_sheet_column_amount"))));
-
-	mValueContainer.addAsset("difficulty_frequency_scale", new float(std::stof(mMainSettingsFile.getSettingFromKey("difficulty_frequency_scale"))));
-	mValueContainer.addAsset("difficulty_amplitude_scale", new float(std::stof(mMainSettingsFile.getSettingFromKey("difficulty_amplitude_scale"))));
 }
 
 void AssetManager::loadColors()
@@ -257,8 +237,4 @@ void AssetManager::loadFonts()
 	mFontContainer.addAsset("gui_font", new Font(mMainSettingsFile.getSettingFromKey("font_src"), (int)*getValue("gui_font_size")));
 }
 
-void AssetManager::loadVector2Ds()
-{
-	mVector2DContainer.addAsset("score_location", new Vector2D((float)*getValue("score_location_x"),
-		(float)*getValue("score_location_y")));
-}
+void AssetManager::loadVector2Ds() {}

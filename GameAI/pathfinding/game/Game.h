@@ -61,7 +61,11 @@ public:
 
 	inline int getScore() const { return mScore; };
 	inline void setScore(int score) { mScore = score; };
+	inline void addScore(int score) { mScore += score; };
 	inline void resetScore() { mScore = 0; };
+
+	inline bool getWon() const { return mWon; };
+	inline void setWon(bool won) { mWon = won; };
 
 	void toggleSound(bool isOn);
 	void requestQuitGame();
@@ -97,6 +101,7 @@ private:
 
 	Vector2D mDisplayDimensions;
 	int mScore;
+	bool mWon;
 
 	Game();
 	~Game();

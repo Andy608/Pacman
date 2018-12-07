@@ -111,6 +111,12 @@ void SteeringComponent::setData(const SteeringData& data)
 	default:
 	{
 		//std::cout << "Unknown steering component!" << std::endl;
+		if (mpSteering)
+		{
+			delete mpSteering;
+			mpSteering = nullptr;
+		}
+
 		break;
 	}
 	};

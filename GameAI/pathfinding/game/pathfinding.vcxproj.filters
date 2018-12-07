@@ -330,6 +330,12 @@
     <ClInclude Include="EnemyIdleState.h">
       <Filter>Header Files\StateMachine\EnemyStates</Filter>
     </ClInclude>
+    <ClInclude Include="EnemyInactiveState.h">
+      <Filter>Header Files\StateMachine\EnemyStates</Filter>
+    </ClInclude>
+    <ClInclude Include="EndScene.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TitleScene.cpp">
@@ -517,6 +523,12 @@
     </ClCompile>
     <ClCompile Include="EnemyIdleState.cpp">
       <Filter>Source Files\StateMachine\EnemyStates</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyInactiveState.cpp">
+      <Filter>Source Files\StateMachine\EnemyStates</Filter>
+    </ClCompile>
+    <ClCompile Include="EndScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

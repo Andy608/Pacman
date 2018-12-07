@@ -103,7 +103,7 @@ Player* UnitManager::createPlayerUnit(GridGraph* pGridGraph, bool shouldWrap /*=
 	return pUnit;
 }
 
-Enemy* UnitManager::createEnemyUnit(GridGraph* pGridGraph, bool shouldWrap, const PositionData& posData /*= ZERO_POSITION_DATA*/, const PhysicsData& physicsData /*= ZERO_PHYSICS_DATA*/, const UnitID& id)
+Enemy* UnitManager::createEnemyUnit(GridGraph* pGridGraph, Vector2D spawn, bool shouldWrap, const PositionData& posData /*= ZERO_POSITION_DATA*/, const PhysicsData& physicsData /*= ZERO_PHYSICS_DATA*/, const UnitID& id)
 {
 	Enemy* pUnit = NULL;
 
@@ -111,7 +111,7 @@ Enemy* UnitManager::createEnemyUnit(GridGraph* pGridGraph, bool shouldWrap, cons
 	if (ptr != NULL)
 	{*/
 		//create unit
-		pUnit = new /*(ptr)*/Enemy(pGridGraph);//placement new
+		pUnit = new /*(ptr)*/Enemy(pGridGraph, spawn);//placement new
 
 		UnitID theID = id;
 		if (theID == INVALID_UNIT_ID)
@@ -395,18 +395,42 @@ void UnitManager::drawAll() const
 
 void UnitManager::updateAll(float elapsedTime)
 {
-	for (auto it = mUnitMap.begin(); it != mUnitMap.end(); ++it)
+	for (auto it = mUnitMap.begin(); it != mUnitMap.end();)
 	{
 		if (it->second->mShouldDelete)
 		{
 			Unit* unit = it->second;
+			ComponentManager* pComponentManager = Game::getInstance()->getComponentManager();
+			pComponentManager->deallocatePhysicsComponent(unit->mPhysicsComponentID);
+			pComponentManager->deallocatePositionComponent(unit->mPositionComponentID);
+			pComponentManager->deallocateSteeringComponent(unit->mSteeringComponentID);
+
 			it = mUnitMap.erase(it);
+
 			delete unit;
 			unit = nullptr;
 		}
 		else
 		{
 			it->second->update(elapsedTime);
+			it++;
 		}
+	}
+}
+
+void UnitManager::deleteAllUnits()
+{
+	for (auto it = mUnitMap.begin(); it != mUnitMap.end();)
+	{
+		Unit* unit = it->second;
+		ComponentManager* pComponentManager = Game::getInstance()->getComponentManager();
+		pComponentManager->deallocatePhysicsComponent(unit->mPhysicsComponentID);
+		pComponentManager->deallocatePositionComponent(unit->mPositionComponentID);
+		pComponentManager->deallocateSteeringComponent(unit->mSteeringComponentID);
+
+		it = mUnitMap.erase(it);
+
+		delete unit;
+		unit = nullptr;
 	}
 }

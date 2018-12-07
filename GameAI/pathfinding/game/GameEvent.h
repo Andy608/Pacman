@@ -9,11 +9,13 @@ public:
 	enum EnumGameEventType : int
 	{
 		//Hot air balloons use fire to trap gas and make the balloons go up
-		_BURN_FUEL_EVENT = EnumEventType::_NUM_EVENT_TYPES + 1,
-		_LANGUAGE_CHANGED_EVENT,
+		_LANGUAGE_CHANGED_EVENT = EnumEventType::_NUM_EVENT_TYPES + 1,
 		_PLAYER_MOVED_EVENT,
 		_PLAYER_ATE_CANDY_EVENT,
 		_PLAYER_ATE_ENEMY_EVENT,
+		_PLAYER_ATE_COIN_EVENT,
+		_GAME_LOST_EVENT,
+		_GAME_END_EVENT,
 		_NUM_EVENT_TYPES
 	};
 
@@ -58,18 +60,34 @@ public:
 	{};
 };
 
-class BurnFuelEvent : public GameEvent
+class PlayerAteCoin : public GameEvent
 {
 public:
-	inline BurnFuelEvent(bool shouldBurnFuel) :
-		GameEvent(GameEvent::EnumGameEventType::_BURN_FUEL_EVENT),
-		mShouldBurnFuel(shouldBurnFuel)
+	inline PlayerAteCoin() :
+		GameEvent(GameEvent::EnumGameEventType::_PLAYER_ATE_COIN_EVENT)
+	{};
+};
+
+class GameLost : public GameEvent
+{
+public:
+	inline GameLost() :
+		GameEvent(GameEvent::EnumGameEventType::_GAME_LOST_EVENT)
+	{};
+};
+
+class GameEnded : public GameEvent
+{
+public:
+	inline GameEnded(bool playerWin) :
+		GameEvent(GameEvent::EnumGameEventType::_GAME_END_EVENT),
+		mPlayerWin(playerWin)
 	{};
 
-	inline bool shouldBurnFuel() const { return mShouldBurnFuel; };
+	const bool& getPlayerWin() const { return mPlayerWin; };
 
 private:
-	bool mShouldBurnFuel;
+	bool mPlayerWin = false;
 };
 
 class LanguageChangedEvent : public GameEvent

@@ -94,10 +94,12 @@
     <ClInclude Include="Connection.h" />
     <ClInclude Include="ContinuousPathSteering.h" />
     <ClInclude Include="Defines.h" />
+    <ClInclude Include="EndScene.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyAttackState.h" />
     <ClInclude Include="EnemyFleeState.h" />
     <ClInclude Include="EnemyIdleState.h" />
+    <ClInclude Include="EnemyInactiveState.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="EventListener.h" />
     <ClInclude Include="EventSystem.h" />
@@ -160,10 +162,12 @@
     <ClCompile Include="ComponentManager.cpp" />
     <ClCompile Include="Connection.cpp" />
     <ClCompile Include="ContinuousPathSteering.cpp" />
+    <ClCompile Include="EndScene.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyAttackState.cpp" />
     <ClCompile Include="EnemyFleeState.cpp" />
     <ClCompile Include="EnemyIdleState.cpp" />
+    <ClCompile Include="EnemyInactiveState.cpp" />
     <ClCompile Include="EventListener.cpp" />
     <ClCompile Include="EventSystem.cpp" />
     <ClCompile Include="Font.cpp" />

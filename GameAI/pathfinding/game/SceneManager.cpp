@@ -2,6 +2,7 @@
 #include "TitleScene.h"
 #include "GameScene.h"
 #include "OptionsScene.h"
+#include "EndScene.h"
 
 SceneManager::SceneManager() :
 	mIsInitialized(false),
@@ -38,6 +39,7 @@ bool SceneManager::initScenes()
 		mSceneList.insert(std::make_pair(EnumScene::TITLE_SCENE, new TitleScene()));
 		mSceneList.insert(std::make_pair(EnumScene::GAME_SCENE, new GameScene()));
 		mSceneList.insert(std::make_pair(EnumScene::OPTIONS_SCENE, new OptionsScene()));
+		mSceneList.insert(std::make_pair(EnumScene::END_SCENE, new EndScene()));
 
 		mIsInitialized = true;
 

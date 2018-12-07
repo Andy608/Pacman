@@ -9,22 +9,22 @@ class Enemy;
 class EnemyFleeState : public StateMachineState, public EventListener
 {
 public:
-	EnemyFleeState(const SM_idType& id, Enemy* enemy);
+	EnemyFleeState(const SM_idType& id, Enemy* enemy, float fleeTime);
 
 	virtual void onEntrance();
 	virtual void onExit();
-	virtual StateTransition* update();
-
-	inline void stopRunning() { mKeepRunning = false; };
+	virtual StateTransition* update(float deltaTime);
 
 	virtual void handleEvent(const Event& theEvent);
 
-	void checkIfPlayerInRadius(const Vector2D& playerPosition);
+	bool isPlayerInRadius(const Vector2D& playerPosition);
 	void updatePath(const Vector2D& playerPosition);
 
 private:
 	Enemy* mpEnemy;
-	bool mKeepRunning;
+	bool mIsRunning;
+	float mFleeTime;
+	float mFleeCount;
 };
 
 #endif

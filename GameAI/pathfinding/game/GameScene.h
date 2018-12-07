@@ -5,8 +5,9 @@
 #include "Grid.h"
 #include "GridGraph.h"
 #include "GridVisualizer.h"
+#include "EventListener.h"
 
-class GameScene : public Scene
+class GameScene : public Scene, public EventListener
 {
 	friend class SceneManager;
 
@@ -21,6 +22,8 @@ public:
 	virtual void save();
 	virtual void load();
 
+	virtual void handleEvent(const Event& theEvent);
+
 private:
 	GameScene();
 	inline virtual ~GameScene() { cleanup(); };
@@ -30,6 +33,9 @@ private:
 	GridGraph* mpGridGraph;
 	Grid* mpGameGrid;
 	GridVisualizer* mpGridVisualizer;
+
+	int mInGame = false;
+	int mItemCount = 0;
 };
 
 #endif

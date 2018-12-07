@@ -9,6 +9,7 @@ class PlayerMovedEvent;
 class EnemyAttackState;
 class EnemyFleeState;
 class EnemyIdleState;
+class EnemyInactiveState;
 
 class Enemy : public Unit
 {
@@ -16,6 +17,7 @@ class Enemy : public Unit
 	friend class EnemyAttackState;
 	friend class EnemyFleeState;
 	friend class EnemyIdleState;
+	friend class EnemyInactiveState;
 
 public:
 	virtual void handleEvent(const Event& theEvent);
@@ -25,7 +27,7 @@ public:
 	//void initTargetPos(Vector2D targetPos) { mTargetPosition = targetPos; };
 
 private:
-	Enemy(GridGraph* gridGraph);
+	Enemy(GridGraph* gridGraph, Vector2D spawn);
 	virtual ~Enemy();
 
 	//Vector2D mTargetPosition;
@@ -33,13 +35,14 @@ private:
 	EnemyIdleState* mpEnemyIdleState;
 	EnemyAttackState* mpEnemyAttackState;
 	EnemyFleeState* mpEnemyFleeState;
+	EnemyInactiveState* mpEnemyInactiveState;
 
 	StateTransition* mpToEnemyIdleState;
 	StateTransition* mpToEnemyAttackState;
 	StateTransition* mpToEnemyFleeState;
+	StateTransition* mpToEnemyInactiveState;
 
 	void updatePath(const PlayerMovedEvent& theEvent);
-	void initStateMachine();
 };
 
 #endif

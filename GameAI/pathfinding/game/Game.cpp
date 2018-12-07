@@ -21,6 +21,7 @@
 #include "SaveManager.h"
 #include "UnitManager.h"
 #include "ComponentManager.h"
+#include "GameEvent.h"
 //#include "Score.h"
 //Temp
 
@@ -59,6 +60,7 @@ void Game::cleanupInstance()
 Game::Game() : EventListener(EventSystem::getInstance())
 {
 	EventSystem::addListener(Event::EnumEventType::_QUIT_EVENT, this);
+	EventSystem::addListener(static_cast<Event::EnumEventType>(GameEvent::EnumGameEventType::_GAME_END_EVENT), this);
 }
 
 Game::~Game()
@@ -92,6 +94,8 @@ bool Game::init(const int& displayWidth, const int& displayHeight)
 			mpSaveManager = new SaveManager();
 			mpSaveManager->addSaveFile("game_save_data", "assets/data_files/game_save_data.txt");
 			mpSaveManager->addSaveFile("options_save_data", "assets/data_files/options_save_data.txt");
+
+			mScore = 0;
 
 			if (!mpLocalizationMap->initLangauges(*mpMainSettingsFile))
 			{
@@ -267,6 +271,9 @@ void Game::handleEvent(const Event& theEvent)
 	{
 	case Event::EnumEventType::_QUIT_EVENT:
 		requestQuitGame();
+		break;
+	case GameEvent::EnumGameEventType::_GAME_END_EVENT:
+		mpSceneManager->setCurrentScene(EnumScene::END_SCENE);
 		break;
 	}
 }

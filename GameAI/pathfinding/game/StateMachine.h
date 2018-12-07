@@ -18,7 +18,8 @@ enum TransitionType
 	INVALID_TRANSITION_TYPE = -1,
 	ENEMY_IDLE_TRANSITION = 0,
 	ENEMY_ATTACK_TRANSITION = 1,
-	ENEMY_FLEE_TRANSITION = 2
+	ENEMY_FLEE_TRANSITION = 2,
+	ENEMY_INACTIVE_TRANSITION = 3
 };
 
 typedef int SM_idType;
@@ -34,7 +35,7 @@ public:
 
 	virtual void onEntrance() = 0;//code to run when the state is entered
 	virtual void onExit() = 0;//code to run when the state is exitted
-	virtual StateTransition* update() = 0;//code to run each frame - returning NULL means no transition
+	virtual StateTransition* update(float deltaTime) = 0;//code to run each frame - returning NULL means no transition
 
 protected:
 	SM_idType mID;
@@ -64,7 +65,7 @@ public:
 	void addState(StateMachineState* pState);
 	void setInitialStateID(const SM_idType& id) { mInitialStateID = id; };
 
-	void update();//give the current state a chance to run
+	void update(float deltaTime);//give the current state a chance to run
 	void start();//go to the initial state
 
 protected:

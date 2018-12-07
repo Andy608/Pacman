@@ -5,7 +5,7 @@ title_scene_menu_load=Load Game
 title_scene_menu_options=Options
 title_scene_menu_exit=Exit
 
-game_scene_score=Score
+game_scene_score=Score: 
 
 options_scene_menu_title=OPTIONS
 options_scene_menu_back=<- Back
@@ -19,5 +19,7 @@ options_scene_menu_sound_on=On
 options_scene_menu_sound_off=Off
 
 end_scene_menu_title=HOT AIR BALLOON
+end_scene_menu_outcome_win=You Won!
+end_scene_menu_outcome_lose=You Lost
 end_scene_menu_subtitle=Your Score:
 end_scene_menu_back=Main Menu

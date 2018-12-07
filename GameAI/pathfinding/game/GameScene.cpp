@@ -3,25 +3,37 @@
 #include "GraphicsSystem.h"
 
 #include "ComponentManager.h"
+#include "LocalizationMap.h"
 #include "UnitManager.h"
+#include "EventSystem.h"
 
 #include "Player.h"
 #include "Candy.h"
 #include "Coin.h"
 #include "Enemy.h"
+#include "GameEvent.h"
 
 GameScene::GameScene() : 
 	Scene(EnumScene::GAME_SCENE),
+	EventListener(EventSystem::getInstance()),
 	mpMapSettings(new SettingsFile("assets/data_files/tile_data.txt"))
 {
 	mpGameGrid = new Grid(mpMapSettings, GraphicsSystem::getDisplayWidth(), GraphicsSystem::getDisplayHeight());
 	mpGridGraph = nullptr;
 	mpGridVisualizer = nullptr;
+
+	EventSystem::addListener(static_cast<Event::EnumEventType>(GameEvent::EnumGameEventType::_PLAYER_ATE_ENEMY_EVENT), this);
+	EventSystem::addListener(static_cast<Event::EnumEventType>(GameEvent::EnumGameEventType::_PLAYER_ATE_CANDY_EVENT), this);
+	EventSystem::addListener(static_cast<Event::EnumEventType>(GameEvent::EnumGameEventType::_PLAYER_ATE_COIN_EVENT), this);
+	EventSystem::addListener(static_cast<Event::EnumEventType>(GameEvent::EnumGameEventType::_GAME_LOST_EVENT), this);
 }
 
 void GameScene::start()
 {
-	GraphicsBuffer levelMap = *mpAssetManagerInstance->getBuffer("level_map");
+	mInGame = true;
+	Game::getInstance()->setWon(false);
+
+	const GraphicsBuffer& levelMap = *mpAssetManagerInstance->getBuffer("level_map");
 
 	int gridWidth = mpGameGrid->getGridWidth();
 	int gridHeight = mpGameGrid->getGridHeight();
@@ -107,17 +119,25 @@ void GameScene::start()
 	const std::vector<int>& enemySpawns = mpGameGrid->getEnemySpawns();
 	for (unsigned int i = 0; i < enemySpawns.size(); ++i)
 	{
-		Enemy* enemy = Game::getInstance()->getUnitManager()->createEnemyUnit(mpGridGraph);
+		Enemy* enemy = Game::getInstance()->getUnitManager()->createEnemyUnit(mpGridGraph, mpGameGrid->getULCornerOfSquare(enemySpawns.at(i)));
 		enemy->getPositionComponent()->setPosition(mpGameGrid->getULCornerOfSquare(enemySpawns.at(i)));
 		mpGameGrid->setIndexFree(enemySpawns.at(i), false);
 	}
+
+	mItemCount = selectedIndexes.size() + candySpawns.size();
 
 	mIsInitialized = true;
 }
 
 void GameScene::end()
 {
-	cleanup();
+	mInGame = false;
+
+	delete mpGridGraph;
+	mpGridGraph = nullptr;
+
+	delete mpGridVisualizer;
+	mpGridVisualizer = nullptr;
 }
 
 void GameScene::cleanup()
@@ -125,27 +145,75 @@ void GameScene::cleanup()
 	delete mpMapSettings;
 	mpMapSettings = nullptr;
 
+	delete mpGameGrid;
+	mpGameGrid = nullptr;
+
 	delete mpGridGraph;
 	mpGridGraph = nullptr;
 
 	delete mpGridVisualizer;
 	mpGridVisualizer = nullptr;
 
-	delete mpGameGrid;
-	mpGameGrid = nullptr;
-
-
 	mIsInitialized = false;
+}
+
+void GameScene::handleEvent(const Event& theEvent)
+{
+	if (mInGame)
+	{
+		switch (theEvent.getType())
+		{
+		case GameEvent::EnumGameEventType::_PLAYER_ATE_ENEMY_EVENT:
+		{
+			Game::getInstance()->addScore((int)*mpAssetManagerInstance->getValue("eat_enemy_score"));
+			break;
+		}
+		case GameEvent::EnumGameEventType::_PLAYER_ATE_CANDY_EVENT:
+		{
+			Game::getInstance()->addScore((int)*mpAssetManagerInstance->getValue("eat_candy_score"));
+			mItemCount--;
+			break;
+		}
+		case GameEvent::EnumGameEventType::_PLAYER_ATE_COIN_EVENT:
+		{
+			Game::getInstance()->addScore((int)*mpAssetManagerInstance->getValue("eat_coin_score"));
+			mItemCount--;
+			break;
+		}
+		case GameEvent::EnumGameEventType::_GAME_LOST_EVENT:
+		{
+			mInGame = false;
+			Game::getInstance()->setWon(false);
+			return;
+		}
+		}
+
+		if (mItemCount <= 0)
+		{
+			mInGame = false;
+			Game::getInstance()->setWon(true);
+		}
+	}
 }
 
 void GameScene::update(float deltaTime)
 {
+	if (!mInGame)
+	{
+		Game::getInstance()->getUnitManager()->deleteAllUnits();
+		EventSystem::fireEvent(GameEnded(Game::getInstance()->getWon()));
+	}
 }
 
 void GameScene::draw() 
 {
 	GraphicsSystem::drawScaledToFit(0, 0, *mpAssetManagerInstance->getBuffer("background_buffer"), GraphicsSystem::getDisplayWidth(), GraphicsSystem::getDisplayHeight());
 	mpGridVisualizer->draw();
+
+	GraphicsSystem::writeTextCenteredHorizontally(0, 
+		*mpAssetManagerInstance->getFont("gui_font"), 
+		*mpAssetManagerInstance->getColor("text_color"), 
+		mpLocalizationInstance->getLocalizedString("game_scene_score") + std::to_string(Game::getInstance()->getScore()));
 
 	Game::getInstance()->getUnitManager()->drawAll();
 }

@@ -73,7 +73,7 @@ SDL_Texture* GraphicsBuffer::surfaceToTexture(SDL_Surface* pSurface)
 }
 
 //https://www.gamedev.net/forums/topic/502040-sdl-get-pixel-color/
-Color GraphicsBuffer::getPixelColor(int x, int y)
+Color GraphicsBuffer::getPixelColor(int x, int y) const
 {
 	if (SDL_MUSTLOCK(mpBitmapSurface))
 		SDL_LockSurface(mpBitmapSurface);
@@ -87,7 +87,7 @@ Color GraphicsBuffer::getPixelColor(int x, int y)
 	return Color(color.r, color.g, color.b, 0);
 }
 
-uint32_t GraphicsBuffer::getPixelAsInt(int x, int y)
+uint32_t GraphicsBuffer::getPixelAsInt(int x, int y) const
 {
 	int bpp = mpBitmapSurface->format->BytesPerPixel;
 	/* Here p is the address to the pixel we want to retrieve */

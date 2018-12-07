@@ -25,14 +25,18 @@ Steering* ContinuousPathSteering::getSteering()
 
 	Unit* pOwner = Game::getInstance()->getUnitManager()->getUnit(mOwnerID);
 	GridPathfinder* pPathfinder = pOwner->getGridPathfinder();
-	Path* path = pPathfinder->getPath();
 
-	if (path && targetPathIndex == path->getNumNodes())
+	if (pPathfinder)
 	{
-		Node* pFromNode = path->peekNode(path->getNumNodes() - 1);
-		Node* pToNode = path->peekNode(0);
-		path = pPathfinder->findPath(pFromNode, pToNode);
-		targetPathIndex = 0;
+		Path* path = pPathfinder->getPath();
+
+		if (path && targetPathIndex == path->getNumNodes())
+		{
+			Node* pFromNode = path->peekNode(path->getNumNodes() - 1);
+			Node* pToNode = path->peekNode(0);
+			path = pPathfinder->findPath(pFromNode, pToNode);
+			targetPathIndex = 0;
+		}
 	}
 
 	return this;

@@ -17,7 +17,7 @@ public:
 
 	const int& getWidth() const;
 	const int& getHeight() const;
-	Color getPixelColor(int x, int y);
+	Color getPixelColor(int x, int y) const;
 
 private:
 	explicit GraphicsBuffer(SDL_Surface* pBitmapSurface);
@@ -30,7 +30,7 @@ private:
 	SDL_Surface* loadSurface(const std::string& imagePath);
 	SDL_Texture* surfaceToTexture(SDL_Surface* pSurface);
 
-	uint32_t getPixelAsInt(int x, int y);
+	uint32_t getPixelAsInt(int x, int y) const;
 };
 
 #endif

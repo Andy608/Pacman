@@ -42,8 +42,10 @@ void EnemyAttackState::onExit()
 	mKeepRunning = false;
 }
 
-StateTransition* EnemyAttackState::update()
+StateTransition* EnemyAttackState::update(float deltaTime)
 {
+	const Vector2D& pos = Game::getInstance()->getUnitManager()->getPlayerUnit()->getPositionComponent()->getPosition();
+	
 	if (!mKeepRunning)
 	{
 		//find the right transition
@@ -53,6 +55,11 @@ StateTransition* EnemyAttackState::update()
 			StateTransition* pTransition = iter->second;
 			return pTransition;
 		}
+	}
+	else if (isPlayerInRadius(pos))
+	{
+		//Player Died, go to end scene
+		EventSystem::fireEvent(GameLost());
 	}
 
 	return NULL;//no transition
@@ -84,5 +91,25 @@ void EnemyAttackState::updatePath(const Vector2D& playerPosition)
 	Node* pFromNode = mpEnemy->getGridGraph()->getNode(fromIndex);
 
 	Path* path = mpEnemy->getGridPathfinder()->findPath(pFromNode, pToNode);
-	mpEnemy->setSteering(Steering::CONTINUOUS_PATH, mpEnemy->getPositionComponent()->getPosition());
+	mpEnemy->setSteering(Steering::PATH, mpEnemy->getPositionComponent()->getPosition());
+}
+
+bool EnemyAttackState::isPlayerInRadius(const Vector2D& playerPosition)
+{
+	Grid* grid = mpEnemy->mpGridGraph->getGrid();
+	Vector2D distance = playerPosition - mpEnemy->getPositionComponent()->getPosition();
+	static const float RADIUS = grid->getSquareSize() * grid->getSquareSize() / 2.0f;
+
+	if (distance.getLengthSquared() < RADIUS)
+	{
+		return true;
+		//stopRunning();
+		//mpEnemy->mShouldDelete = true;
+		//Game::getInstance()->getUnitManager()->getPlayerUnit()->mShouldDelete = true;
+
+		//Send event that adds score to player.
+		/*EventSystem::fireEvent(PlayerAteEnemy());*/
+	}
+
+	return false;
 }

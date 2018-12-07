@@ -64,6 +64,7 @@ protected:
 	float mMaxRotAcc;
 	float mMaxRotVel;
 	bool mShowTarget;
+public:
 	bool mShouldDelete = false;
 
 	Unit(GridGraph* pGridGraph, Sprite* sprite);

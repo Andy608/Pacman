@@ -5,7 +5,7 @@ title_scene_menu_load=Cargar Juego
 title_scene_menu_options=Opciones
 title_scene_menu_exit=Salida
 
-game_scene_score=Puntuación
+game_scene_score=Puntuación: 
 
 options_scene_menu_title=OPCIONES
 options_scene_menu_back=<- Regresa
@@ -19,5 +19,7 @@ options_scene_menu_sound_on=En
 options_scene_menu_sound_off=Apagado
 
 end_scene_menu_title=GLOBO AEROSTÁTICO
+end_scene_menu_outcome_win=¡Ganaste!
+end_scene_menu_outcome_lose=Perdiste
 end_scene_menu_subtitle=Tus puntos:
 end_scene_menu_back=Menú principal

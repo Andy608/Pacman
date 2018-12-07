@@ -39,7 +39,7 @@ void EnemyIdleState::onExit()
 	mKeepRunning = false;
 }
 
-StateTransition* EnemyIdleState::update()
+StateTransition* EnemyIdleState::update(float deltaTime)
 {
 	Unit* player = Game::getInstance()->getUnitManager()->getPlayerUnit();
 	Vector2D playerPos = player->getPositionComponent()->getPosition();

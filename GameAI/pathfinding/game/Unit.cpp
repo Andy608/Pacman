@@ -41,7 +41,11 @@ void Unit::draw() const
 	PositionComponent* pPosition = getPositionComponent();
 	assert(pPosition != NULL);
 	const Vector2D& pos = pPosition->getPosition();
-	GraphicsSystem::getInstance()->draw(pos.getX(), pos.getY(), *mpSprite);
+
+	if (mpSprite)
+	{
+		GraphicsSystem::getInstance()->draw(pos.getX(), pos.getY(), *mpSprite);
+	}
 
 	//if (mShowTarget)
 	//{

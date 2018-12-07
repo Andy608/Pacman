@@ -30,7 +30,7 @@ public:
 	~UnitManager();
 
 	Unit* createUnit(GridGraph* pGridGraph, Sprite* sprite, bool shouldWrap = true, const PositionData& posData = ZERO_POSITION_DATA, const PhysicsData& physicsData = ZERO_PHYSICS_DATA, const UnitID& id = INVALID_UNIT_ID);
-	Enemy* createEnemyUnit(GridGraph* pGridGraph, bool shouldWrap = true, const PositionData& posData = ZERO_POSITION_DATA, const PhysicsData& physicsData = ZERO_PHYSICS_DATA, const UnitID& id = INVALID_UNIT_ID);
+	Enemy* createEnemyUnit(GridGraph* pGridGraph, Vector2D spawn, bool shouldWrap = true, const PositionData& posData = ZERO_POSITION_DATA, const PhysicsData& physicsData = ZERO_PHYSICS_DATA, const UnitID& id = INVALID_UNIT_ID);
 	Player* createPlayerUnit(GridGraph* pGridGraph, bool shouldWrap = true, const PositionData& posData = ZERO_POSITION_DATA, const PhysicsData& physicsData = ZERO_PHYSICS_DATA);
 	Candy* createCandyUnit(GridGraph* pGridGraph, bool shouldWrap = true, const PositionData& posData = ZERO_POSITION_DATA, const PhysicsData& physicsData = ZERO_PHYSICS_DATA, const UnitID& id = INVALID_UNIT_ID);
 
@@ -43,6 +43,7 @@ public:
 	Unit* getUnit(const UnitID& id) const;
 	void deleteUnit(const UnitID& id);
 	void deleteRandomUnit();
+	void deleteAllUnits();
 
 	inline const std::map<UnitID, Unit*>& getUnitMap() const { return mUnitMap; };
 	inline const int& getUnitCount() const { return mUnitMap.size(); };

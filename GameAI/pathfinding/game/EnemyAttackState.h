@@ -14,12 +14,13 @@ public:
 
 	virtual void onEntrance();
 	virtual void onExit();
-	virtual StateTransition* update();
+	virtual StateTransition* update(float deltaTime);
 
 	inline void stopRunning() { mKeepRunning = false; };
 
 	virtual void handleEvent(const Event& theEvent);
 
+	bool isPlayerInRadius(const Vector2D& playerPosition);
 	void updatePath(const Vector2D& playerPosition);
 
 private:

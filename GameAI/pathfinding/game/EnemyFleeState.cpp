@@ -11,13 +11,15 @@
 
 using namespace std;
 
-EnemyFleeState::EnemyFleeState(const SM_idType& id, Enemy* enemy) :
+EnemyFleeState::EnemyFleeState(const SM_idType& id, Enemy* enemy, float fleeTime) :
 	StateMachineState(id),
 	EventListener(EventSystem::getInstance()),
 	mpEnemy(enemy),
-	mKeepRunning(false)
+	mFleeTime(fleeTime),
+	mIsRunning(false)
 {
 	EventSystem::addListener(static_cast<Event::EnumEventType>(GameEvent::EnumGameEventType::_PLAYER_MOVED_EVENT), this);
+	EventSystem::addListener(static_cast<Event::EnumEventType>(GameEvent::EnumGameEventType::_PLAYER_ATE_CANDY_EVENT), this);
 }
 
 void EnemyFleeState::onEntrance()
@@ -33,27 +35,40 @@ void EnemyFleeState::onEntrance()
 	mpEnemy->mpSprite = Game::getInstance()->getAssetManager()->getSprite("enemy_flee_sprite");
 	mpEnemy->mpPathfinder = new AStarFleePathfinder(mpEnemy->mpGridGraph, 2);
 
-	mKeepRunning = true;
 	updatePath(Game::getInstance()->getUnitManager()->getPlayerUnit()->getPositionComponent()->getPosition());
+	mFleeCount = 0.0f;
+
+	mIsRunning = true;
 }
 
 void EnemyFleeState::onExit()
 {
 	cout << "\nExitting EnemyFleeState id:" << mID << endl;
-	mKeepRunning = false;
+	mIsRunning = false;
 }
 
-StateTransition* EnemyFleeState::update()
+StateTransition* EnemyFleeState::update(float deltaTime)
 {
-	if (!mKeepRunning)
+	map<TransitionType, StateTransition*>::iterator iter = mTransitions.end();
+
+	mFleeCount += deltaTime;
+
+	const Vector2D& pos = Game::getInstance()->getUnitManager()->getPlayerUnit()->getPositionComponent()->getPosition();
+	if (isPlayerInRadius(pos))
 	{
-		//find the right transition
-		map<TransitionType, StateTransition*>::iterator iter = mTransitions.find(ENEMY_ATTACK_TRANSITION);
-		if (iter != mTransitions.end())//found?
-		{
-			StateTransition* pTransition = iter->second;
-			return pTransition;
-		}
+		iter = mTransitions.find(ENEMY_INACTIVE_TRANSITION);
+		//Add score for eating enemy
+		EventSystem::fireEvent(PlayerAteEnemy());
+	}
+	else if (mFleeCount >= mFleeTime)
+	{
+		iter = mTransitions.find(ENEMY_ATTACK_TRANSITION);
+	}
+
+	if (iter != mTransitions.end())//found?
+	{
+		StateTransition* pTransition = iter->second;
+		return pTransition;
 	}
 
 	return NULL;//no transition
@@ -61,30 +76,42 @@ StateTransition* EnemyFleeState::update()
 
 void EnemyFleeState::handleEvent(const Event& theEvent)
 {
-	if (mKeepRunning)
+	if (mIsRunning)
 	{
 		switch (theEvent.getType())
 		{
 		case GameEvent::EnumGameEventType::_PLAYER_MOVED_EVENT:
+		{
 			Vector2D playerPosition = static_cast<const PlayerMovedEvent&>(theEvent).getPlayerPosition();
 			updatePath(playerPosition);
-			checkIfPlayerInRadius(playerPosition);
 			break;
+		}
+		case GameEvent::EnumGameEventType::_PLAYER_ATE_CANDY_EVENT:
+		{
+			mFleeCount = 0.0f;
+		}
 		}
 	}
 }
 
-void EnemyFleeState::checkIfPlayerInRadius(const Vector2D& playerPosition)
+bool EnemyFleeState::isPlayerInRadius(const Vector2D& playerPosition)
 {
 	Grid* grid = mpEnemy->mpGridGraph->getGrid();
 	Vector2D distance = playerPosition - mpEnemy->getPositionComponent()->getPosition();
+	static const float RADIUS = grid->getSquareSize() * grid->getSquareSize() / 2.0f;
 
-	if (distance.getLengthSquared() < grid->getSquareSize() * grid->getSquareSize())
+	if (distance.getLengthSquared() < RADIUS)
 	{
-		mpEnemy->mShouldDelete = true;
+		return true;
+		//stopRunning();
+		//mpEnemy->mShouldDelete = true;
+		//Game::getInstance()->getUnitManager()->getPlayerUnit()->mShouldDelete = true;
+		
 		//Send event that adds score to player.
-		EventSystem::fireEvent(PlayerAteEnemy());
+		/*EventSystem::fireEvent(PlayerAteEnemy());*/
 	}
+
+	return false;
 }
 
 void EnemyFleeState::updatePath(const Vector2D& playerPosition)
