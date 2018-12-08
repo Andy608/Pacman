@@ -36,9 +36,6 @@ Steering* PathSteering::getSteering()
 		Vector2D direction = mTargetLoc - pOwner->getPositionComponent()->getPosition();
 		float targetRadiusSquared = 60 * 60;
 
-		//Vector2D target = pGrid->getULCornerOfSquare(path->peekNode(0)->getId());
-		//mArriveSteering.setTargetLoc(target);
-
 		if (direction.getLengthSquared() < targetRadiusSquared && path->peekNode(targetPathIndex) != nullptr)
 		{
 			Vector2D target = pGrid->getULCornerOfSquare(path->peekNode(targetPathIndex)->getId());
@@ -46,8 +43,6 @@ Steering* PathSteering::getSteering()
 			mArriveSteering.setTargetLoc(target);
 			++targetPathIndex;
 		}
-
-		//pPathfinder->setPath(path);
 	}
 
 	Steering* steering = mArriveSteering.getSteering();

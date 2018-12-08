@@ -103,12 +103,6 @@ bool EnemyAttackState::isPlayerInRadius(const Vector2D& playerPosition)
 	if (distance.getLengthSquared() < RADIUS)
 	{
 		return true;
-		//stopRunning();
-		//mpEnemy->mShouldDelete = true;
-		//Game::getInstance()->getUnitManager()->getPlayerUnit()->mShouldDelete = true;
-
-		//Send event that adds score to player.
-		/*EventSystem::fireEvent(PlayerAteEnemy());*/
 	}
 
 	return false;

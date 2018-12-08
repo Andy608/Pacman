@@ -30,11 +30,9 @@ Sound::~Sound()
 
 void Sound::fadeInSound(int fadeInMillis)
 {
-	//mChannel = Mix_PlayChannel(-1, mSound, -1);
 	if (mIsSoundEffect)
 		mChannel = Mix_FadeInChannel(-1, mSound, -1, fadeInMillis);
 	else
-		//Mix_FadeInMusic(mMusic, -1, fadeInMillis);
 	{
 		Mix_PlayMusic(mMusic, -1);
 		Mix_VolumeMusic(20);
@@ -43,7 +41,6 @@ void Sound::fadeInSound(int fadeInMillis)
 
 void Sound::fadeOutSound(int fadeOutMillis)
 {
-	//Mix_HaltChannel(mChannel);
 	if (mIsSoundEffect)
 		Mix_FadeOutChannel(mChannel, fadeOutMillis);
 	else

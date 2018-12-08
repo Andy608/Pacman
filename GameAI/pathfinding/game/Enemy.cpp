@@ -31,8 +31,6 @@ Enemy::Enemy(GridGraph* gridGraph, Vector2D spawn) :
 	mpToEnemyInactiveState = new StateTransition(ENEMY_INACTIVE_TRANSITION, 3);
 
 	mpEnemyIdleState->addTransition(mpToEnemyAttackState);
-	//mpEnemyIdleState->addTransition(mpToEnemyFleeState);
-	//mpEnemyIdleState->addTransition(mpToEnemyInactiveState);
 
 	mpEnemyAttackState->addTransition(mpToEnemyFleeState);
 
@@ -92,19 +90,4 @@ void Enemy::update(float deltaTime)
 void Enemy::draw() const
 {
 	Unit::draw();
-	//mpPathfinder->drawVisualization(mpGridGraph->getGrid());
-}
-
-void Enemy::updatePath(const PlayerMovedEvent& theEvent)
-{
-	//int playerIndex = theEvent.getPlayerGridIndex();
-	//Grid* grid = mpGridGraph->getGrid();
-	//
-	//int toIndex = playerIndex;
-	//int fromIndex = grid->getSquareIndexFromPosition(getPositionComponent()->getPosition());
-	//Node* pToNode = mpGridGraph->getNode(toIndex);
-	//Node* pFromNode = mpGridGraph->getNode(fromIndex);
-	//
-	//Path* path = mpPathfinder->findPath(pFromNode, pToNode);
-	//setSteering(Steering::CONTINUOUS_PATH, getPositionComponent()->getPosition());
 }

@@ -57,7 +57,6 @@ StateTransition* EnemyFleeState::update(float deltaTime)
 	if (isPlayerInRadius(pos))
 	{
 		iter = mTransitions.find(ENEMY_INACTIVE_TRANSITION);
-		//Add score for eating enemy
 		EventSystem::fireEvent(PlayerAteEnemy());
 	}
 	else if (mFleeCount >= mFleeTime)
@@ -103,12 +102,6 @@ bool EnemyFleeState::isPlayerInRadius(const Vector2D& playerPosition)
 	if (distance.getLengthSquared() < RADIUS)
 	{
 		return true;
-		//stopRunning();
-		//mpEnemy->mShouldDelete = true;
-		//Game::getInstance()->getUnitManager()->getPlayerUnit()->mShouldDelete = true;
-		
-		//Send event that adds score to player.
-		/*EventSystem::fireEvent(PlayerAteEnemy());*/
 	}
 
 	return false;

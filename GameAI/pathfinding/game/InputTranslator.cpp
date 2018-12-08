@@ -26,8 +26,6 @@ bool InputTranslator::init()
 		EventSystem::addListener(Event::EnumEventType::_INPUT_EVENT, this);
 		EventSystem::addListener(Event::EnumEventType::_MOUSE_EVENT, this);
 
-		//Add new key pairs here - get keys from file eventually
-		//mInputMap.insert(std::make_pair(EnumKeyInput::SPACE_KEY, static_cast<Event::EnumEventType>(GameEvent::EnumGameEventType::_BURN_FUEL_EVENT)));
 		mInputMap.insert(std::make_pair(EnumKeyInput::ESCAPE_KEY, Event::EnumEventType::_QUIT_EVENT));
 	}
 
@@ -76,13 +74,6 @@ void InputTranslator::handleEvent(const Event& theEvent)
 				fireTranslatedEvent(WindowClosedEvent());
 				break;
 			}
-		}
-		else
-		{
-			/*switch (translatedEventType)
-			{
-
-			}*/
 		}
 	}
 }

@@ -11,9 +11,6 @@
 #include "Sprite.h"
 #include "Steering.h"
 #include "GridGraph.h"
-//#include "CircularQueue.h"
-//#include "Transaction.h"
-//#include "TransactionProcessor.h"
 
 #include "EventListener.h"
 #include "GridPathfinder.h"
@@ -25,7 +22,6 @@ class UnitManager;
 
 const Uint32 DEFAULT_QUEUE_CAPACITY = 8;
 
-//class Unit : public TransactionProcessor
 class Unit : public EventListener
 {
 public:

@@ -138,7 +138,6 @@
     <ClInclude Include="SettingsFile.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="Sprite.h" />
-    <ClInclude Include="SpriteManager.h" />
     <ClInclude Include="SpriteSheet.h" />
     <ClInclude Include="StateMachine.h" />
     <ClInclude Include="Steering.h" />
@@ -204,7 +203,6 @@
     <ClCompile Include="SettingsFile.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Sprite.cpp" />
-    <ClCompile Include="SpriteManager.cpp" />
     <ClCompile Include="SpriteSheet.cpp" />
     <ClCompile Include="StateMachine.cpp" />
     <ClCompile Include="Steering.cpp" />

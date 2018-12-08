@@ -8,7 +8,6 @@
 #include "PhysicsComponent.h"
 #include "SteeringComponent.h"
 #include "ComponentManager.h"
-#include "SpriteManager.h"
 #include "EventSystem.h"
 #include "AStarPathfinder.h"
 
@@ -46,20 +45,6 @@ void Unit::draw() const
 	{
 		GraphicsSystem::getInstance()->draw(pos.getX(), pos.getY(), *mpSprite);
 	}
-
-	//if (mShowTarget)
-	//{
-	//	SteeringComponent* pSteering = getSteeringComponent();
-	//	assert(pSteering != NULL);
-	//	const Vector2D& targetLoc = pSteering->getTargetLoc();
-
-	//	if (&targetLoc != &ZERO_VECTOR2D)
-	//	{
-	//		Sprite* pTargetSprite = Game::getInstance()->getSpriteManager()->getSprite(TARGET_SPRITE_ID);
-	//		//assert(pTargetSprite != NULL);
-	//		GraphicsSystem::getInstance()->draw(targetLoc.getX(), targetLoc.getY(), *pTargetSprite);
-	//	}
-	//}
 }
 
 float Unit::getFacing() const

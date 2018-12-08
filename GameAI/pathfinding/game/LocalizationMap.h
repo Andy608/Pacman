@@ -20,7 +20,8 @@ public:
 
 	std::string getLocalizedString(std::string keyID);
 
-	inline EnumLanguage getLanguageType() const { if (mCurrentLanguage) { mCurrentLanguage->getLanguage(); return mCurrentLanguage->getLanguage(); } else { return EnumLanguage::ENGLISH; } };
+	inline EnumLanguage getLanguageType() const { if (mCurrentLanguage) { mCurrentLanguage->getLanguage(); 
+	return mCurrentLanguage->getLanguage(); } else { return EnumLanguage::ENGLISH; } };
 
 private:
 	bool mIsInitialized = false;

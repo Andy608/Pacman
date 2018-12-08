@@ -24,14 +24,6 @@ Steering* ArriveSteering::getSteering()
 
 	Unit* pOwner = Game::getInstance()->getUnitManager()->getUnit(mOwnerID);
 
-	//if (mTargetID != INVALID_UNIT_ID)
-	//{
-	//	//arriving unit
-	//	Unit* pTarget = Game::getInstance()->getUnitManager()->getUnit(mTargetID);
-	//	assert(pTarget != NULL);
-	//	mTargetLoc = pTarget->getPositionComponent()->getPosition();
-	//}
-
 	direction = mTargetLoc - pOwner->getPositionComponent()->getPosition();
 	Vector2D pos = pOwner->getPositionComponent()->getPosition();
 

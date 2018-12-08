@@ -48,7 +48,6 @@ float lerp(int value, int start, int end)
 #ifdef VISUALIZE_PATH
 void GridPathfinder::drawVisualization(Grid* pGrid)
 {
-	//cout << "mpPath:" << mpPath << endl;
 	delete mpVisualizer;
 	mpVisualizer = new GridVisualizer(pGrid);
 	static Color startPathColor = Color(255, 117, 2);
@@ -65,12 +64,7 @@ void GridPathfinder::drawVisualization(Grid* pGrid)
 		for (int i = 1; i < numNodes - 1; i++)
 		{
 			mpVisualizer->addColor(mpPath->peekNode(i)->getId(), Color(255, 255, 255));
-			//float lerpVal = lerp(i, 1, numNodes - 1);
 			currentPathColor = Color(255, 255, 255);
-				//Color(
-				//(int)((startPathColor.red * (1.0f - lerpVal) + (endPathColor.red * lerpVal))),
-				//	(int)((startPathColor.green * (1.0f - lerpVal) + (endPathColor.green * lerpVal))),
-				//	(int)((startPathColor.blue * (1.0f - lerpVal) + (endPathColor.blue * lerpVal))));
 		}
 
 		if (numNodes > 0)
@@ -82,6 +76,6 @@ void GridPathfinder::drawVisualization(Grid* pGrid)
 
 	}
 
-	mpVisualizer->draw(/**pDest*/);
+	mpVisualizer->draw();
 }
 #endif

@@ -57,7 +57,6 @@ void GameScene::start()
 			int tileValue = std::stoi(mpMapSettings->getKeyFromSetting(tileName));
 
 			//Add the tile ID to the grid data
-			//std::cout << "X: " << std::to_string(x) << ", Y: " << std::to_string(y) << " V: " << std::to_string(tileValue) << std::endl;
 			mpGameGrid->setValueAtPixelXY(x * mpGameGrid->getSquareSize(), y * mpGameGrid->getSquareSize(), tileValue);
 		}
 	}
@@ -73,7 +72,6 @@ void GameScene::start()
 	if (player)
 	{
 		player->initTargetPos(player->getPositionComponent()->getPosition());
-		//player->setSteering(Steering::ARRIVE, player->getPositionComponent()->getPosition());
 	}
 
 	const std::vector<int>& candySpawns = mpGameGrid->getCandySpawns();
@@ -111,9 +109,6 @@ void GameScene::start()
 	{
 		Coin* coin = Game::getInstance()->getUnitManager()->createCoinUnit(mpGridGraph);
 		coin->getPositionComponent()->setPosition(mpGameGrid->getULCornerOfSquare(selectedIndexes.at(i)));
-
-		//Store in a list eventually
-		//Game::getInstance()->getUnitManager()->createRandomCoinUnit(mpGameGrid);
 	}
 
 	const std::vector<int>& enemySpawns = mpGameGrid->getEnemySpawns();

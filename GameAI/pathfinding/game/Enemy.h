@@ -24,13 +24,10 @@ public:
 	virtual void update(float deltaTime);
 	virtual void draw() const;
 
-	//void initTargetPos(Vector2D targetPos) { mTargetPosition = targetPos; };
-
 private:
 	Enemy(GridGraph* gridGraph, Vector2D spawn);
 	virtual ~Enemy();
 
-	//Vector2D mTargetPosition;
 	StateMachine* mpEnemyStateMachine;
 	EnemyIdleState* mpEnemyIdleState;
 	EnemyAttackState* mpEnemyAttackState;
@@ -41,8 +38,6 @@ private:
 	StateTransition* mpToEnemyAttackState;
 	StateTransition* mpToEnemyFleeState;
 	StateTransition* mpToEnemyInactiveState;
-
-	void updatePath(const PlayerMovedEvent& theEvent);
 };
 
 #endif

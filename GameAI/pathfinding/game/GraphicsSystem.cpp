@@ -200,8 +200,6 @@ void GraphicsSystem::draw(const GraphicsBuffer& targetBuffer, const float& drawi
 
 	SDL_SetRenderTarget(smpInstance->mpRenderer, targetBuffer.mpBitmapTexture);
 
-	//SDL_Texture* textureText = SDL_CreateTextureFromSurface(smpInstance->mpRenderer, &surface);
-
 	SDL_Rect gdSprite;
 
 	gdSprite.x = static_cast<int>(std::round(drawingX));
@@ -212,7 +210,6 @@ void GraphicsSystem::draw(const GraphicsBuffer& targetBuffer, const float& drawi
 	SDL_RenderCopy(smpInstance->mpRenderer, imageBuffer.mpBitmapTexture, nullptr, &gdSprite);
 
 	SDL_SetRenderTarget(smpInstance->mpRenderer, pPreviousBitmap);
-	//SDL_DestroyTexture(textureText);
 }
 
 void GraphicsSystem::drawCentered(const GraphicsBuffer& buffer, const float& scale)
@@ -382,11 +379,6 @@ void GraphicsSystem::writeText(const GraphicsBuffer& targetBuffer, const float& 
 	SDL_Texture* textureText = SDL_CreateTextureFromSurface(smpInstance->mpRenderer, surfaceText);
 
 	SDL_RenderCopy(smpInstance->mpRenderer, textureText, nullptr, &gdSprite);
-
-	SDL_SetRenderTarget(smpInstance->mpRenderer, pPreviousBitmap);
-
-
-	//draw(startingX, startingY, surfaceText);
 
 	SDL_SetRenderTarget(smpInstance->mpRenderer, pPreviousBitmap);
 	SDL_FreeSurface(surfaceText);

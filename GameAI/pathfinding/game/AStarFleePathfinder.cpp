@@ -59,7 +59,7 @@ Path* AStarFleePathfinder::findPath(Node* pFrom, Node* pTo)
 	NodeRecord current;
 	int iter = 0;
 
-	while (/*openList.size() > 0 ||*/ iter < mIterations)
+	while (iter < mIterations)
 	{
 		openList.getSmallestElement(current);
 
@@ -124,27 +124,24 @@ Path* AStarFleePathfinder::findPath(Node* pFrom, Node* pTo)
 		++iter;
 	}
 
-	//if (current.node == pTo)
-	//{
-		NodeRecord temp = current;
+	NodeRecord temp = current;
 
-		while (temp.node != pFrom)
-		{
-			pPath->addNode(temp.node);
-			closedList.find(temp.connection->getFromNode(), temp);
-		}
+	while (temp.node != pFrom)
+	{
+		pPath->addNode(temp.node);
+		closedList.find(temp.connection->getFromNode(), temp);
+	}
 
-		pPath->addNode(pFrom);
+	pPath->addNode(pFrom);
 
-		Path* reversePath = new Path();
-		for (int i = pPath->getNumNodes() - 1; i >= 0; --i)
-		{
-			reversePath->addNode(pPath->peekNode(i));
-		}
+	Path* reversePath = new Path();
+	for (int i = pPath->getNumNodes() - 1; i >= 0; --i)
+	{
+		reversePath->addNode(pPath->peekNode(i));
+	}
 
-		delete pPath;
-		pPath = reversePath;
-	//}
+	delete pPath;
+	pPath = reversePath;
 
 	if (pPath->getNumNodes() == 0)
 	{

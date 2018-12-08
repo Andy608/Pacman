@@ -34,7 +34,6 @@ void Candy::checkIfPlayerInRadius(const Vector2D& playerPosition)
 	if (distance.getLengthSquared() < grid->getSquareSize() * grid->getSquareSize())
 	{
 		mShouldDelete = true;
-		//Send event that adds score to player.
 		EventSystem::fireEvent(PlayerAteCandy());
 	}
 }

@@ -41,13 +41,7 @@ void EnemyIdleState::onExit()
 
 StateTransition* EnemyIdleState::update(float deltaTime)
 {
-	Unit* player = Game::getInstance()->getUnitManager()->getPlayerUnit();
-	Vector2D playerPos = player->getPositionComponent()->getPosition();
-	Vector2D enemyPos = mpEnemy->getPositionComponent()->getPosition();
-	Vector2D distance = playerPos - enemyPos;
-	static const float RADIUS = (float)(mpEnemy->getGridGraph()->getGrid()->getSquareSize() * 5.0f);
-
-	if (!mKeepRunning/*distance.getLengthSquared() < RADIUS * RADIUS*/)
+	if (!mKeepRunning)
 	{
 		//find the right transition
 		map<TransitionType, StateTransition*>::iterator iter = mTransitions.find(ENEMY_ATTACK_TRANSITION);
@@ -57,10 +51,6 @@ StateTransition* EnemyIdleState::update(float deltaTime)
 			return pTransition;
 		}
 	}
-
-	/*if (!mKeepRunning)
-	{
-	}*/
 
 	return NULL;//no transition
 }
@@ -73,7 +63,6 @@ void EnemyIdleState::handleEvent(const Event& theEvent)
 		{
 		case GameEvent::EnumGameEventType::_PLAYER_MOVED_EVENT:
 		{
-			//updatePath(static_cast<const PlayerMovedEvent&>(theEvent));
 			stopRunning();
 			break;
 		}

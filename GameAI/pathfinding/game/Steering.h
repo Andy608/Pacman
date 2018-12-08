@@ -16,14 +16,7 @@ public:
 	enum SteeringType
 	{
 		INVALID_TYPE = -1,
-		//SEEK,
-		//FLEE,
 		ARRIVE,
-		/*ALIGN,
-		FACE,
-		WANDER,
-		WANDER_AND_CHASE,
-		ARRIVE_AND_FACE,*/
 		PATH,
 		GRID_PATH,
 		CONTINUOUS_PATH

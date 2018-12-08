@@ -22,10 +22,6 @@
 #include "UnitManager.h"
 #include "ComponentManager.h"
 #include "GameEvent.h"
-//#include "Score.h"
-//Temp
-
-//#include "Player.h"
 
 Game* Game::smpInstance = nullptr;
 
@@ -230,7 +226,6 @@ void Game::loop()
 
 			//Print out the frames to the console
 			mFrames = static_cast<int>(round(1000.0f / pPerformanceTracker->getElapsedTime(mDRAW_TRACKER_NAME)));
-			//std::cout << "Elapsed Time: " << pPerformanceTracker->getElapsedTime(mDRAW_TRACKER_NAME) << " milliseconds" << std::endl;
 		}
 
 		mIsLoopRunning = false;

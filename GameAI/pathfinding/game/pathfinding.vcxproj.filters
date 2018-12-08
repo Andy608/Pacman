@@ -282,9 +282,6 @@
     <ClInclude Include="Steering.h">
       <Filter>Header Files\Steering</Filter>
     </ClInclude>
-    <ClInclude Include="SpriteManager.h">
-      <Filter>Common\Header Files\Sprite</Filter>
-    </ClInclude>
     <ClInclude Include="ArriveSteering.h">
       <Filter>Header Files\Steering</Filter>
     </ClInclude>
@@ -472,9 +469,6 @@
     </ClCompile>
     <ClCompile Include="Steering.cpp">
       <Filter>Source Files\Steering</Filter>
-    </ClCompile>
-    <ClCompile Include="SpriteManager.cpp">
-      <Filter>Common\Source Files\Sprite</Filter>
     </ClCompile>
     <ClCompile Include="ArriveSteering.cpp">
       <Filter>Source Files\Steering</Filter>

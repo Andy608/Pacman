@@ -16,8 +16,7 @@ UnitID UnitManager::msNextUnitID = PLAYER_UNIT_ID + 1;
 
 using namespace std;
 
-UnitManager::UnitManager(Uint32 maxSize) //:
-	//mPool(maxSize, sizeof(Unit))
+UnitManager::UnitManager(Uint32 maxSize)
 {
 
 }
@@ -26,39 +25,35 @@ Unit* UnitManager::createUnit(GridGraph* pGridGraph, Sprite* sprite, bool should
 {
 	Unit* pUnit = NULL;
 
-	//Byte* ptr = mPool.allocateObject();
-	//if (ptr != NULL)
-	//{
-		//create unit
-		pUnit = new /*(ptr)*/Unit(pGridGraph, sprite);//placement new
+	//create unit
+	pUnit = new Unit(pGridGraph, sprite);
 
-		UnitID theID = id;
-		if (theID == INVALID_UNIT_ID)
-		{
-			theID = msNextUnitID;
-			msNextUnitID++;
-		}
+	UnitID theID = id;
+	if (theID == INVALID_UNIT_ID)
+	{
+		theID = msNextUnitID;
+		msNextUnitID++;
+	}
 
-		//place in map
-		mUnitMap[theID] = pUnit;
+	//place in map
+	mUnitMap[theID] = pUnit;
 
-		//assign id and increment nextID counter
-		pUnit->mID = theID;
+	//assign id and increment nextID counter
+	pUnit->mID = theID;
 
-		//create some components
-		ComponentManager* pComponentManager = Game::getInstance()->getComponentManager();
-		ComponentID compId = pComponentManager->allocatePositionComponent(posData, shouldWrap);
-		pUnit->mPositionComponentID = compId;
-		pUnit->mpPositionComponent = pComponentManager->getPositionComponent(compId);
-		pUnit->mPhysicsComponentID = pComponentManager->allocatePhysicsComponent(pUnit->mPositionComponentID, physicsData);
-		pUnit->mSteeringComponentID = pComponentManager->allocateSteeringComponent(pUnit->mPhysicsComponentID);
+	//create some components
+	ComponentManager* pComponentManager = Game::getInstance()->getComponentManager();
+	ComponentID compId = pComponentManager->allocatePositionComponent(posData, shouldWrap);
+	pUnit->mPositionComponentID = compId;
+	pUnit->mpPositionComponent = pComponentManager->getPositionComponent(compId);
+	pUnit->mPhysicsComponentID = pComponentManager->allocatePhysicsComponent(pUnit->mPositionComponentID, physicsData);
+	pUnit->mSteeringComponentID = pComponentManager->allocateSteeringComponent(pUnit->mPhysicsComponentID);
 
-		//set max's
-		pUnit->mMaxSpeed = MAX_SPEED;
-		pUnit->mMaxAcc = MAX_ACC;
-		pUnit->mMaxRotAcc = MAX_ROT_ACC;
-		pUnit->mMaxRotVel = MAX_ROT_VEL;
-	//}
+	//set max's
+	pUnit->mMaxSpeed = MAX_SPEED;
+	pUnit->mMaxAcc = MAX_ACC;
+	pUnit->mMaxRotAcc = MAX_ROT_ACC;
+	pUnit->mMaxRotVel = MAX_ROT_VEL;
 
 	return pUnit;
 }
@@ -73,32 +68,28 @@ Player* UnitManager::createPlayerUnit(GridGraph* pGridGraph, bool shouldWrap /*=
 		return static_cast<Player*>(iter->second);
 	}
 
-	/*Byte* ptr = mPool.allocateObject();
-	if (ptr != NULL)
-	{*/
-		//create unit
-		pUnit = new /*(ptr)*/Player(pGridGraph);
+	//create unit
+	pUnit = new Player(pGridGraph);
 
-		//place in map
-		mUnitMap[PLAYER_UNIT_ID] = pUnit;
+	//place in map
+	mUnitMap[PLAYER_UNIT_ID] = pUnit;
 
-		//assign id and increment nextID counter
-		pUnit->mID = PLAYER_UNIT_ID;
+	//assign id and increment nextID counter
+	pUnit->mID = PLAYER_UNIT_ID;
 
-		//create some components
-		ComponentManager* pComponentManager = Game::getInstance()->getComponentManager();
-		ComponentID compId = pComponentManager->allocatePositionComponent(posData, shouldWrap);
-		pUnit->mPositionComponentID = compId;
-		pUnit->mpPositionComponent = pComponentManager->getPositionComponent(compId);
-		pUnit->mPhysicsComponentID = pComponentManager->allocatePhysicsComponent(pUnit->mPositionComponentID, physicsData);
-		pUnit->mSteeringComponentID = pComponentManager->allocateSteeringComponent(pUnit->mPhysicsComponentID);
+	//create some components
+	ComponentManager* pComponentManager = Game::getInstance()->getComponentManager();
+	ComponentID compId = pComponentManager->allocatePositionComponent(posData, shouldWrap);
+	pUnit->mPositionComponentID = compId;
+	pUnit->mpPositionComponent = pComponentManager->getPositionComponent(compId);
+	pUnit->mPhysicsComponentID = pComponentManager->allocatePhysicsComponent(pUnit->mPositionComponentID, physicsData);
+	pUnit->mSteeringComponentID = pComponentManager->allocateSteeringComponent(pUnit->mPhysicsComponentID);
 
-		//set max's
-		pUnit->mMaxSpeed = MAX_SPEED;
-		pUnit->mMaxAcc = MAX_ACC;
-		pUnit->mMaxRotAcc = MAX_ROT_ACC;
-		pUnit->mMaxRotVel = MAX_ROT_VEL;
-	//}
+	//set max's
+	pUnit->mMaxSpeed = MAX_SPEED;
+	pUnit->mMaxAcc = MAX_ACC;
+	pUnit->mMaxRotAcc = MAX_ROT_ACC;
+	pUnit->mMaxRotVel = MAX_ROT_VEL;
 
 	return pUnit;
 }
@@ -107,39 +98,35 @@ Enemy* UnitManager::createEnemyUnit(GridGraph* pGridGraph, Vector2D spawn, bool 
 {
 	Enemy* pUnit = NULL;
 
-	/*Byte* ptr = mPool.allocateObject();
-	if (ptr != NULL)
-	{*/
-		//create unit
-		pUnit = new /*(ptr)*/Enemy(pGridGraph, spawn);//placement new
+	//create unit
+	pUnit = new Enemy(pGridGraph, spawn);
 
-		UnitID theID = id;
-		if (theID == INVALID_UNIT_ID)
-		{
-			theID = msNextUnitID;
-			msNextUnitID++;
-		}
+	UnitID theID = id;
+	if (theID == INVALID_UNIT_ID)
+	{
+		theID = msNextUnitID;
+		msNextUnitID++;
+	}
 
-		//place in map
-		mUnitMap[theID] = pUnit;
+	//place in map
+	mUnitMap[theID] = pUnit;
 
-		//assign id and increment nextID counter
-		pUnit->mID = theID;
+	//assign id and increment nextID counter
+	pUnit->mID = theID;
 
-		//create some components
-		ComponentManager* pComponentManager = Game::getInstance()->getComponentManager();
-		ComponentID compId = pComponentManager->allocatePositionComponent(posData, shouldWrap);
-		pUnit->mPositionComponentID = compId;
-		pUnit->mpPositionComponent = pComponentManager->getPositionComponent(compId);
-		pUnit->mPhysicsComponentID = pComponentManager->allocatePhysicsComponent(pUnit->mPositionComponentID, physicsData);
-		pUnit->mSteeringComponentID = pComponentManager->allocateSteeringComponent(pUnit->mPhysicsComponentID);
+	//create some components
+	ComponentManager* pComponentManager = Game::getInstance()->getComponentManager();
+	ComponentID compId = pComponentManager->allocatePositionComponent(posData, shouldWrap);
+	pUnit->mPositionComponentID = compId;
+	pUnit->mpPositionComponent = pComponentManager->getPositionComponent(compId);
+	pUnit->mPhysicsComponentID = pComponentManager->allocatePhysicsComponent(pUnit->mPositionComponentID, physicsData);
+	pUnit->mSteeringComponentID = pComponentManager->allocateSteeringComponent(pUnit->mPhysicsComponentID);
 
-		//set max's
-		pUnit->mMaxSpeed = MAX_SPEED;
-		pUnit->mMaxAcc = MAX_ACC;
-		pUnit->mMaxRotAcc = MAX_ROT_ACC;
-		pUnit->mMaxRotVel = MAX_ROT_VEL;
-	//}
+	//set max's
+	pUnit->mMaxSpeed = MAX_SPEED;
+	pUnit->mMaxAcc = MAX_ACC;
+	pUnit->mMaxRotAcc = MAX_ROT_ACC;
+	pUnit->mMaxRotVel = MAX_ROT_VEL;
 
 	return pUnit;
 }
@@ -148,39 +135,35 @@ Candy* UnitManager::createCandyUnit(GridGraph* pGridGraph, bool shouldWrap /*= t
 {
 	Candy* pUnit = NULL;
 
-	/*Byte* ptr = mPool.allocateObject();
-	if (ptr != NULL)
-	{*/
-		//create unit
-		pUnit = new /*(ptr)*/Candy(pGridGraph);//placement new
+	//create unit
+	pUnit = new Candy(pGridGraph);
 
-		UnitID theID = id;
-		if (theID == INVALID_UNIT_ID)
-		{
-			theID = msNextUnitID;
-			msNextUnitID++;
-		}
+	UnitID theID = id;
+	if (theID == INVALID_UNIT_ID)
+	{
+		theID = msNextUnitID;
+		msNextUnitID++;
+	}
 
-		//place in map
-		mUnitMap[theID] = pUnit;
+	//place in map
+	mUnitMap[theID] = pUnit;
 
-		//assign id and increment nextID counter
-		pUnit->mID = theID;
+	//assign id and increment nextID counter
+	pUnit->mID = theID;
 
-		//create some components
-		ComponentManager* pComponentManager = Game::getInstance()->getComponentManager();
-		ComponentID compId = pComponentManager->allocatePositionComponent(posData, shouldWrap);
-		pUnit->mPositionComponentID = compId;
-		pUnit->mpPositionComponent = pComponentManager->getPositionComponent(compId);
-		pUnit->mPhysicsComponentID = pComponentManager->allocatePhysicsComponent(pUnit->mPositionComponentID, physicsData);
-		pUnit->mSteeringComponentID = pComponentManager->allocateSteeringComponent(pUnit->mPhysicsComponentID);
+	//create some components
+	ComponentManager* pComponentManager = Game::getInstance()->getComponentManager();
+	ComponentID compId = pComponentManager->allocatePositionComponent(posData, shouldWrap);
+	pUnit->mPositionComponentID = compId;
+	pUnit->mpPositionComponent = pComponentManager->getPositionComponent(compId);
+	pUnit->mPhysicsComponentID = pComponentManager->allocatePhysicsComponent(pUnit->mPositionComponentID, physicsData);
+	pUnit->mSteeringComponentID = pComponentManager->allocateSteeringComponent(pUnit->mPhysicsComponentID);
 
-		//set max's
-		pUnit->mMaxSpeed = MAX_SPEED;
-		pUnit->mMaxAcc = MAX_ACC;
-		pUnit->mMaxRotAcc = MAX_ROT_ACC;
-		pUnit->mMaxRotVel = MAX_ROT_VEL;
-	//}
+	//set max's
+	pUnit->mMaxSpeed = MAX_SPEED;
+	pUnit->mMaxAcc = MAX_ACC;
+	pUnit->mMaxRotAcc = MAX_ROT_ACC;
+	pUnit->mMaxRotVel = MAX_ROT_VEL;
 
 	return pUnit;
 }
@@ -189,39 +172,35 @@ Coin* UnitManager::createCoinUnit(GridGraph* pGridGraph, bool shouldWrap /*= tru
 {
 	Coin* pUnit = NULL;
 
-	/*Byte* ptr = mPool.allocateObject();
-	if (ptr != NULL)
-	{*/
-		//create unit
-		pUnit = new /*(ptr)*/Coin(pGridGraph);//placement new
+	//create unit
+	pUnit = new Coin(pGridGraph);
 
-		UnitID theID = id;
-		if (theID == INVALID_UNIT_ID)
-		{
-			theID = msNextUnitID;
-			msNextUnitID++;
-		}
+	UnitID theID = id;
+	if (theID == INVALID_UNIT_ID)
+	{
+		theID = msNextUnitID;
+		msNextUnitID++;
+	}
 
-		//place in map
-		mUnitMap[theID] = pUnit;
+	//place in map
+	mUnitMap[theID] = pUnit;
 
-		//assign id and increment nextID counter
-		pUnit->mID = theID;
+	//assign id and increment nextID counter
+	pUnit->mID = theID;
 
-		//create some components
-		ComponentManager* pComponentManager = Game::getInstance()->getComponentManager();
-		ComponentID compId = pComponentManager->allocatePositionComponent(posData, shouldWrap);
-		pUnit->mPositionComponentID = compId;
-		pUnit->mpPositionComponent = pComponentManager->getPositionComponent(compId);
-		pUnit->mPhysicsComponentID = pComponentManager->allocatePhysicsComponent(pUnit->mPositionComponentID, physicsData);
-		pUnit->mSteeringComponentID = pComponentManager->allocateSteeringComponent(pUnit->mPhysicsComponentID);
+	//create some components
+	ComponentManager* pComponentManager = Game::getInstance()->getComponentManager();
+	ComponentID compId = pComponentManager->allocatePositionComponent(posData, shouldWrap);
+	pUnit->mPositionComponentID = compId;
+	pUnit->mpPositionComponent = pComponentManager->getPositionComponent(compId);
+	pUnit->mPhysicsComponentID = pComponentManager->allocatePhysicsComponent(pUnit->mPositionComponentID, physicsData);
+	pUnit->mSteeringComponentID = pComponentManager->allocateSteeringComponent(pUnit->mPhysicsComponentID);
 
-		//set max's
-		pUnit->mMaxSpeed = MAX_SPEED;
-		pUnit->mMaxAcc = MAX_ACC;
-		pUnit->mMaxRotAcc = MAX_ROT_ACC;
-		pUnit->mMaxRotVel = MAX_ROT_VEL;
-	//}
+	//set max's
+	pUnit->mMaxSpeed = MAX_SPEED;
+	pUnit->mMaxAcc = MAX_ACC;
+	pUnit->mMaxRotAcc = MAX_ROT_ACC;
+	pUnit->mMaxRotVel = MAX_ROT_VEL;
 
 	return pUnit;
 }
@@ -230,52 +209,48 @@ Coin* UnitManager::createRandomCoinUnit(GridGraph* pGridGraph, bool shouldWrap /
 {
 	Coin* pUnit = NULL;
 
-	/*Byte* ptr = mPool.allocateObject();
-	if (ptr != NULL)
-	{*/
-		//create unit
-		pUnit = new /*(ptr)*/Coin(pGridGraph);//placement new
+	//create unit
+	pUnit = new Coin(pGridGraph);
 
-		UnitID theID = id;
-		if (theID == INVALID_UNIT_ID)
-		{
-			theID = msNextUnitID;
-			msNextUnitID++;
-		}
+	UnitID theID = id;
+	if (theID == INVALID_UNIT_ID)
+	{
+		theID = msNextUnitID;
+		msNextUnitID++;
+	}
 
-		//place in map
-		mUnitMap[theID] = pUnit;
+	//place in map
+	mUnitMap[theID] = pUnit;
 
-		//assign id and increment nextID counter
-		pUnit->mID = theID;
+	//assign id and increment nextID counter
+	pUnit->mID = theID;
 
-		int posX;
-		int posY;
-		Grid* grid = pGridGraph->getGrid();
+	int posX;
+	int posY;
+	Grid* grid = pGridGraph->getGrid();
 
-		do
-		{
-			posX = (rand() % grid->getGridWidth()) * grid->getSquareSize();
-			posY = (rand() % grid->getGridHeight()) * grid->getSquareSize();
+	do
+	{
+		posX = (rand() % grid->getGridWidth()) * grid->getSquareSize();
+		posY = (rand() % grid->getGridHeight()) * grid->getSquareSize();
 
-		} while (/*grid->getValueAtPixelXY((int)posX, (int)posY) != grid->sFLOOR_ID && */!grid->isIndexFree(grid->getSquareIndexFromPixelXY(posX, posY)));
+	} while (!grid->isIndexFree(grid->getSquareIndexFromPixelXY(posX, posY)));
 
-		grid->setIndexFree(grid->getSquareIndexFromPixelXY(posX, posY), false);
+	grid->setIndexFree(grid->getSquareIndexFromPixelXY(posX, posY), false);
 
-		//create some components
-		ComponentManager* pComponentManager = Game::getInstance()->getComponentManager();
-		ComponentID compId = pComponentManager->allocatePositionComponent(PositionData(Vector2D(posX, posY), shouldWrap));
-		pUnit->mPositionComponentID = compId;
-		pUnit->mpPositionComponent = pComponentManager->getPositionComponent(compId);
-		pUnit->mPhysicsComponentID = pComponentManager->allocatePhysicsComponent(pUnit->mPositionComponentID, ZERO_PHYSICS_DATA);
-		pUnit->mSteeringComponentID = pComponentManager->allocateSteeringComponent(pUnit->mPhysicsComponentID);
+	//create some components
+	ComponentManager* pComponentManager = Game::getInstance()->getComponentManager();
+	ComponentID compId = pComponentManager->allocatePositionComponent(PositionData(Vector2D(posX, posY), shouldWrap));
+	pUnit->mPositionComponentID = compId;
+	pUnit->mpPositionComponent = pComponentManager->getPositionComponent(compId);
+	pUnit->mPhysicsComponentID = pComponentManager->allocatePhysicsComponent(pUnit->mPositionComponentID, ZERO_PHYSICS_DATA);
+	pUnit->mSteeringComponentID = pComponentManager->allocateSteeringComponent(pUnit->mPhysicsComponentID);
 
-		//set max's
-		pUnit->mMaxSpeed = MAX_SPEED;
-		pUnit->mMaxAcc = MAX_ACC;
-		pUnit->mMaxRotAcc = MAX_ROT_ACC;
-		pUnit->mMaxRotVel = MAX_ROT_VEL;
-	//}
+	//set max's
+	pUnit->mMaxSpeed = MAX_SPEED;
+	pUnit->mMaxAcc = MAX_ACC;
+	pUnit->mMaxRotAcc = MAX_ROT_ACC;
+	pUnit->mMaxRotVel = MAX_ROT_VEL;
 
 	return pUnit;
 }
@@ -347,12 +322,8 @@ void UnitManager::deleteUnit(const UnitID& id)
 		pComponentManager->deallocateSteeringComponent(pUnit->mSteeringComponentID);
 
 		//call destructor
-		/*pUnit->~Unit();*/
 		delete pUnit;
 		pUnit = nullptr;
-
-		//free the object in the pool
-		//mPool.freeObject((Byte*)pUnit);
 	}
 }
 
@@ -361,10 +332,6 @@ void UnitManager::deleteRandomUnit()
 	if (mUnitMap.size() >= 1)
 	{
 		Uint32 target = rand() % mUnitMap.size();
-		//if (target == 0)//don't allow the 0th element to be deleted as it is the player unit
-		//{
-		//	target = 1;
-		//}
 
 		Uint32 cnt = 0;
 		for (auto it = mUnitMap.begin(); it != mUnitMap.end(); ++it, cnt++)

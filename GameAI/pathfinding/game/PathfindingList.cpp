@@ -94,7 +94,6 @@ void PathfindingList::operator-=(NodeRecord& recordToRemove)
 
 		if (currentRecord == recordToRemove)
 		{
-			//std::cout << "REMOVING: " << std::to_string(recordToRemove.costSoFar) << std::endl;
 			mNodeRecords.erase(iter);
 			break;
 		}

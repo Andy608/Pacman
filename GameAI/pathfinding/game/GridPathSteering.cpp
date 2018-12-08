@@ -36,9 +36,6 @@ Steering* GridPathSteering::getSteering()
 		Vector2D direction = mTargetLoc - pOwner->getPositionComponent()->getPosition();
 		float targetRadiusSquared = (float)pGrid->getSquareSize();
 
-		//Vector2D target = pGrid->getULCornerOfSquare(path->peekNode(0)->getId());
-		//mArriveSteering.setTargetLoc(target);
-
 		Vector2D distance = mTargetLoc - currentPosition;
 		std::cout << "distance: " << distance.getLengthSquared() << std::endl;
 
@@ -64,6 +61,5 @@ Steering* GridPathSteering::getSteering()
 		pPathfinder->setPath(path);
 	}
 
-	//this->mData = data;
 	return this;
 }
